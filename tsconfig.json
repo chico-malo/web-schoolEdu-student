@@ -1,0 +1,10 @@
+{
+    // But we still have to override Parcel's default config
+    "compilerOptions": {
+        "jsx": "react",
+        "target": "ES5",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "allowJs": true
+    }
+}
