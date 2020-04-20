@@ -1,11 +1,12 @@
 import Home from "~container/Home/index";
 import Login from "~container/Login";
+import { routePath } from "./route.path";
 
 /*
  * @Author: yyao
  * @Date: 2020-04-13 18:12:40
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 15:32:49
+ * @LastEditTime: 2020-04-20 17:01:17
  * @Description: 路由配置
  */
 export interface RouteConfigProps {
@@ -16,14 +17,6 @@ export interface RouteConfigProps {
   children?: Array<RouteConfigProps>;
   isMenu?: boolean; // 是否是菜单的路由
 }
-
-// 路由表
-export const routePath = {
-  login: "/",
-  register: "/register",
-  result404: "/result-404",
-  home: "/home",
-};
 
 // 路由配置表
 export const routeConfig: Array<RouteConfigProps> = [

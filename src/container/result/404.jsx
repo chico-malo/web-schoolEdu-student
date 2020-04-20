@@ -7,7 +7,7 @@
  */
 import React from "react";
 import { Result, Button } from "antd";
-import { routePath } from "~core/route.config";
+import { routePath } from "~core/route/route.config";
 import { Control } from "react-keeper";
 
 export default class Result404 extends React.Component {

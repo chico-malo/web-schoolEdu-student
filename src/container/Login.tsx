@@ -3,7 +3,7 @@ import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import React from "react";
 import { lang } from "../locales/zh-en";
 import { Link, Control } from "react-keeper";
-import { routePath } from "../core/route.config";
+import { routePath } from "~core/route/route.path";
 
 export default class Login extends React.PureComponent {
   /**
