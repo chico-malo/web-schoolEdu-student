@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-13 15:40:34
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 17:01:30
+ * @LastEditTime: 2020-04-20 17:25:17
  * @Description: 入口文件
  */
 import "core-js/es/map";
@@ -16,7 +16,7 @@ import "./styles/index.less";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import GenerateRoute from "~core/route/GenerateRoute";
+import GenerateRoute from "~/core/route/GenerateRoute";
 
 const application = document.getElementById("application");
 

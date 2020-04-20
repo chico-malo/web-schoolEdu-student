@@ -1,13 +1,17 @@
+@import "./common.less";
+
 .container_home {
   // 首页头部
   .home_header {
     position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1;
     width: 100%;
+    min-width: @minWidth;
     .header_left {
       // logo
       .left_logo {

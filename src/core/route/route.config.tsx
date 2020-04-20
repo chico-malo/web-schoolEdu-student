@@ -1,12 +1,13 @@
-import Home from "~container/Home/index";
-import Login from "~container/Login";
 import { routePath } from "./route.path";
+import Login from "~/container/Login";
+import Home from "~/container/Home";
+import UserCenter from "~/container/User/UserCenter";
 
 /*
  * @Author: yyao
  * @Date: 2020-04-13 18:12:40
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 17:01:17
+ * @LastEditTime: 2020-04-20 17:24:49
  * @Description: 路由配置
  */
 export interface RouteConfigProps {
@@ -34,5 +35,10 @@ export const routeConfig: Array<RouteConfigProps> = [
     path: routePath.home,
     title: "首页",
     component: Home,
+  },
+  {
+    path: routePath.userCenter,
+    title: "个人中心",
+    component: UserCenter,
   },
 ];

@@ -2,13 +2,13 @@
  * @Author: yyao
  * @Date: 2020-04-20 11:09:22
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 12:08:45
+ * @LastEditTime: 2020-04-20 17:23:11
  * @Description: 404页
  */
 import React from "react";
 import { Result, Button } from "antd";
-import { routePath } from "~core/route/route.config";
 import { Control } from "react-keeper";
+import { routePath } from "~/core/route/route.path";
 
 export default class Result404 extends React.Component {
   onGotoHome = () => {

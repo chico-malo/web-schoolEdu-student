@@ -2,15 +2,15 @@
  * @Author: yyao
  * @Date: 2020-04-20 15:19:10
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 17:05:21
+ * @LastEditTime: 2020-04-20 17:25:06
  * @Description: 基本样式 高阶组件
  */
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Layout, Menu, Breadcrumb, Row, Badge, Avatar, Dropdown } from "antd";
 import { Control } from "react-keeper";
-import { lang } from "~locales/zh-en";
-import { routePath } from "~core/route/route.path";
+import { lang } from "~/locales/zh-en";
+import { routePath } from "~/core/route/route.path";
 
 const { Header, Content, Footer } = Layout;
 
@@ -30,7 +30,7 @@ const headerMenu = [
   },
   {
     title: "个人中心",
-    path: "",
+    path: routePath.userCenter,
   },
 ];
 // 右侧个人菜单
