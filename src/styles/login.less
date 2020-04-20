@@ -2,17 +2,31 @@
  * @Author: yyao
  * @Date: 2020-04-13 16:53:36
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-13 18:06:01
+ * @LastEditTime: 2020-04-20 16:09:32
  * @Description: 登录模块样式
  */
 // form 容器
 .container_login {
+  flex-direction: column;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   // 登录form
   .login_form {
-    width: 300px;
+    width: 400px;
     padding: 50px 20px 20px;
     border: 1px solid #dadada;
     border-radius: 5px;
+    background-color: #fff;
+    .login-form-button {
+      width: 100%;
+    }
+  }
+  // 首页页脚
+  .login_foot {
+    position: absolute;
+    bottom: 30px;
+    .foot_copyRight {
+      color: #fff;
+    }
   }
 }

@@ -1,0 +1,41 @@
+.container_home {
+  // 首页头部
+  .home_header {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    width: 100%;
+    .header_left {
+      // logo
+      .left_logo {
+        width: 220px;
+        height: 31px;
+        line-height: 31px;
+        color: #fff;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+      }
+    }
+    // 右侧头像
+    .header_right {
+      width: 200px;
+      // 姓名
+      .header_right_name {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+  }
+
+  // 内容
+  .home_content {
+    padding: 0 50px;
+    margin-top: 64px;
+    height: calc(100vh - 70px);
+  }
+}

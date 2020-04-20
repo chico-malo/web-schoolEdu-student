@@ -2,7 +2,7 @@ import { Form, Input, Button, Checkbox, Row } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import React from "react";
 import { lang } from "../locales/zh-en";
-import { Link } from "react-keeper";
+import { Link, Control } from "react-keeper";
 import { routePath } from "../core/route.config";
 
 export default class Login extends React.PureComponent {
@@ -14,8 +14,10 @@ export default class Login extends React.PureComponent {
 
   onSubmit = (values) => {
     console.log("Received values of form: ", values);
+    Control.go(routePath.home);
   };
-  _renderFormItem = ({ name, message, itemProps, inputProps }) => {
+  _renderFormItem = (config) => {
+    const { name, message, itemProps, inputProps } = config;
     return (
       <Form.Item
         name={name}
@@ -33,9 +35,11 @@ export default class Login extends React.PureComponent {
         <Form
           name="normal_login"
           className="login_form"
-          initialValues={{ remember: true }}
+          initialValues={{ remember: false }}
           onFinish={this.onSubmit}
+          onFinishFailed={this.onSubmit}
         >
+          <h1>学籍管理系统</h1>
           {this._renderFormItem({
             name: "username",
             message: "请输入姓名!",
@@ -55,11 +59,12 @@ export default class Login extends React.PureComponent {
           })}
           {this._renderFormItem({
             name: "email",
-            message: "请输入邮箱!",
+            message: "请输入验证码!",
             inputProps: {
-              placeholder: "邮箱",
+              placeholder: "验证码",
               prefix: <MailOutlined />,
               type: "email",
+              addonAfter: <span>验证码</span>,
             },
           })}
           <Form.Item>
@@ -82,6 +87,9 @@ export default class Login extends React.PureComponent {
             </Button>
           </Form.Item>
         </Form>
+        <Row align="middle" className="login_foot">
+          <span className="foot_copyRight">{lang.CopyRight}</span>
+        </Row>
       </Row>
     );
   }

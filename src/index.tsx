@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-13 15:40:34
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 14:14:31
+ * @LastEditTime: 2020-04-20 15:38:09
  * @Description: 入口文件
  */
 import "core-js/es/map";
@@ -12,6 +12,7 @@ import "babel-polyfill";
 import "normalize.css";
 import "antd/dist/antd.css";
 import "./styles/theme.less";
+import "./styles/index.less";
 
 import React from "react";
 import ReactDOM from "react-dom";
