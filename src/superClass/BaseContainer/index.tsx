@@ -2,15 +2,16 @@
  * @Author: yyao
  * @Date: 2020-04-20 15:19:10
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 11:22:48
+ * @LastEditTime: 2020-04-26 14:04:44
  * @Description: 基本样式 高阶组件
  */
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
-import { Layout, Menu, Breadcrumb, Row, Badge, Avatar, Dropdown } from "antd";
+import { Layout, Menu, Row, Badge, Avatar, Dropdown } from "antd";
 import { Control } from "react-keeper";
 import { lang } from "~/locales/zh-en";
-import { routePath } from "~/core/route/route.path";
+import { personalMenuConfig } from "./config/personalMenu";
+import { headerMenu } from "./config/headerMenu";
 
 const { Header, Content, Footer } = Layout;
 
@@ -18,36 +19,6 @@ export interface BaseContainerProps {
   isHeader?: boolean;
   isFooter?: Boolean;
 }
-// 头部菜单
-const headerMenu = [
-  {
-    title: "首页",
-    path: routePath.home,
-  },
-  {
-    title: "课程报选",
-    path: routePath.courseApply,
-  },
-  {
-    title: "个人中心",
-    path: routePath.userCenter,
-  },
-];
-// 右侧个人菜单
-const personalMenuConfig = [
-  {
-    title: "个人信息",
-    path: "",
-  },
-  {
-    title: "修改密码",
-    path: "",
-  },
-  {
-    title: "退出",
-    path: routePath.login,
-  },
-];
 
 export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
   WrappedComponent
@@ -73,7 +44,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
           ))}
         </Menu>
       );
-          
+
       return (
         <Header className="home_header">
           <Row className="header_left">
@@ -112,7 +83,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
       return <Footer style={{ textAlign: "center" }}>{lang.CopyRight}</Footer>;
     };
     render() {
-      console.log('headerMenu', headerMenu);
+      console.log("headerMenu", headerMenu);
       const { isHeader = true, isFooter = true } = BaseContainerProps;
       return (
         <Layout className="container_home">
