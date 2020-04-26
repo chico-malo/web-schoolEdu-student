@@ -2,7 +2,7 @@ import React from "react";
 import { RouteConfigProps, routeConfig } from "./route.config";
 import { Route, HashRouter } from "react-keeper";
 import { BackTop } from "antd";
-import Result404 from "~container/result/404";
+import Result404 from "~/container/result/404";
 
 export default class GenerateRoute extends React.Component {
   // 设置文档title

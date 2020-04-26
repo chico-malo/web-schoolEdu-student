@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-20 15:19:10
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 17:25:06
+ * @LastEditTime: 2020-04-26 11:22:48
  * @Description: 基本样式 高阶组件
  */
 import React from "react";
@@ -26,7 +26,7 @@ const headerMenu = [
   },
   {
     title: "课程报选",
-    path: "",
+    path: routePath.courseApply,
   },
   {
     title: "个人中心",
@@ -59,6 +59,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
      * @return:null
      */
     onMenuLick = (path: string) => {
+      console.log("path", path);
       Control.go(path);
     };
     // 头部
@@ -72,7 +73,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
           ))}
         </Menu>
       );
-
+          
       return (
         <Header className="home_header">
           <Row className="header_left">
@@ -111,6 +112,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
       return <Footer style={{ textAlign: "center" }}>{lang.CopyRight}</Footer>;
     };
     render() {
+      console.log('headerMenu', headerMenu);
       const { isHeader = true, isFooter = true } = BaseContainerProps;
       return (
         <Layout className="container_home">

@@ -16,6 +16,7 @@
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
     "react-keeper": "^2.2.2",
+    "react-sticky": "^6.0.3",
     "src": "^1.1.2"
   },
   "devDependencies": {
