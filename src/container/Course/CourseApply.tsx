@@ -2,9 +2,10 @@
  * @Author: yyao
  * @Date: 2020-04-26 10:55:19
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 12:09:20
+ * @LastEditTime: 2020-04-26 13:59:00
  * @Description: 课程报选
  */
+import "~/styles/courseApply.less";
 import React from "react";
 import { List, Avatar, Tabs } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
@@ -24,7 +25,7 @@ const renderTabBar = (props, DefaultTabBar) => (
     )}
   </Sticky>
 );
- 
+
 @BaseContainer({})
 class CourseApply extends React.PureComponent<any, any> {
   _renderList = () => {
@@ -57,7 +58,7 @@ class CourseApply extends React.PureComponent<any, any> {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3,
+          pageSize: 10,
         }}
         dataSource={listData}
         footer={
@@ -106,9 +107,9 @@ class CourseApply extends React.PureComponent<any, any> {
   };
   render() {
     return (
-      <StickyContainer>
+      <StickyContainer class="container_courseApply">
         <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
-          <TabPane tab="可选课程" key="1" style={{ height: 200 }}>
+          <TabPane tab="可选课程" key="1">
             {this._renderList()}
           </TabPane>
           <TabPane tab="已选课程" key="2">
