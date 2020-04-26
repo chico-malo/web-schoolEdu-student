@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-26 10:55:19
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 12:06:56
+ * @LastEditTime: 2020-04-26 12:09:20
  * @Description: 课程报选
  */
 import React from "react";
@@ -24,7 +24,7 @@ const renderTabBar = (props, DefaultTabBar) => (
     )}
   </Sticky>
 );
-
+ 
 @BaseContainer({})
 class CourseApply extends React.PureComponent<any, any> {
   _renderList = () => {
