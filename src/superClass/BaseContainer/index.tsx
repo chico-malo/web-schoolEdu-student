@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-20 15:19:10
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 14:04:44
+ * @LastEditTime: 2020-04-30 14:41:51
  * @Description: 基本样式 高阶组件
  */
 import React from "react";
@@ -23,16 +23,23 @@ export interface BaseContainerProps {
 export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
   WrappedComponent
 ) =>
-  class extends React.Component<BaseContainerProps, any> {
+  class extends React.PureComponent<BaseContainerProps, any> {
+    constructor(props) {
+      super(props);
+      const pathname: string = (this.props as any).pathname;
+      this.state = {
+        statePath: pathname || "/home",
+      };
+    }
     /**
      * @description: 菜单点击
      * @param {type} path: 跳转path
      * @return:null
      */
     onMenuLick = (path: string) => {
-      console.log("path", path);
       Control.go(path);
     };
+
     // 头部
     _renderHeader = () => {
       const generateMenu = (
@@ -44,14 +51,18 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
           ))}
         </Menu>
       );
-
+      const { statePath } = this.state;
       return (
         <Header className="home_header">
           <Row className="header_left">
             <div className="left_logo">学籍管理系统-毕业设计</div>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["0"]}>
-              {headerMenu.map(({ title, path }, index) => (
-                <Menu.Item key={index} onClick={() => this.onMenuLick(path)}>
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={[statePath]}
+            >
+              {headerMenu.map(({ title, path }) => (
+                <Menu.Item key={path} onClick={() => this.onMenuLick(path)}>
                   {title}
                 </Menu.Item>
               ))}
@@ -83,7 +94,6 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
       return <Footer style={{ textAlign: "center" }}>{lang.CopyRight}</Footer>;
     };
     render() {
-      console.log("headerMenu", headerMenu);
       const { isHeader = true, isFooter = true } = BaseContainerProps;
       return (
         <Layout className="container_home">
