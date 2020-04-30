@@ -2,13 +2,13 @@
  * @Author: yyao
  * @Date: 2020-04-26 10:55:19
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 13:59:00
+ * @LastEditTime: 2020-04-30 14:30:24
  * @Description: 课程报选
  */
 import "~/styles/courseApply.less";
 import React from "react";
 import { List, Avatar, Tabs } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+import { UsergroupAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { StickyContainer, Sticky } from "react-sticky";
 import { BaseContainer } from "~/superClass/BaseContainer";
 
@@ -33,13 +33,11 @@ class CourseApply extends React.PureComponent<any, any> {
     for (let i = 0; i < 23; i++) {
       listData.push({
         href: "http://ant.design",
-        title: `ant design part ${i}`,
+        title: `课程列表${i}`,
         avatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+        description: "这里是对老师的基本介绍",
+        content: "这一段是对课程的基本介绍",
       });
     }
 
@@ -69,23 +67,6 @@ class CourseApply extends React.PureComponent<any, any> {
         renderItem={(item) => (
           <List.Item
             key={item.title}
-            actions={[
-              <IconText
-                icon={StarOutlined}
-                text="156"
-                key="list-vertical-star-o"
-              />,
-              <IconText
-                icon={LikeOutlined}
-                text="156"
-                key="list-vertical-like-o"
-              />,
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
-            ]}
             extra={
               <img
                 width={272}
@@ -93,6 +74,18 @@ class CourseApply extends React.PureComponent<any, any> {
                 src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
               />
             }
+            actions={[
+              <IconText
+                icon={UsergroupAddOutlined}
+                text="156"
+                key="list-vertical-star-o"
+              />,
+              <IconText
+                icon={PlusSquareOutlined}
+                text="报课申请"
+                key="PlusSquareOutlined"
+              />,
+            ]}
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
@@ -107,12 +100,12 @@ class CourseApply extends React.PureComponent<any, any> {
   };
   render() {
     return (
-      <StickyContainer class="container_courseApply">
+      <StickyContainer className="container_courseApply">
         <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
-          <TabPane tab="可选课程" key="1">
+          <TabPane tab="可选课程" key="1" className="courseApply_tabPane">
             {this._renderList()}
           </TabPane>
-          <TabPane tab="已选课程" key="2">
+          <TabPane tab="已选课程" key="2" className="courseApply_tabPane">
             {this._renderList()}
           </TabPane>
         </Tabs>
