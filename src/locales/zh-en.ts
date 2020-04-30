@@ -2,7 +2,7 @@
  * @Author: yyao
  * @Date: 2020-04-13 16:56:33
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-20 16:05:22
+ * @LastEditTime: 2020-04-30 16:07:11
  * @Description: 国际化-中文
  */
 export const lang = {

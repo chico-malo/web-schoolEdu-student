@@ -1,14 +1,16 @@
 import { routePath } from "./route.path";
-import Login from "~/container/Login";
+import Login from "~/container/System/Login";
 import Home from "~/container/Home";
 import UserCenter from "~/container/User/UserCenter";
 import CourseApply from "~/container/Course/CourseApply";
+import Register from "~/container/System/Register";
+import Forgot from "~/container/System/Forgot";
 
 /*
  * @Author: yyao
  * @Date: 2020-04-13 18:12:40
  * @LastEditors: yyao
- * @LastEditTime: 2020-04-26 11:25:31
+ * @LastEditTime: 2020-04-30 17:28:33
  * @Description: 路由配置
  */
 export interface RouteConfigProps {
@@ -23,6 +25,11 @@ export interface RouteConfigProps {
 // 路由配置表
 export const routeConfig: Array<RouteConfigProps> = [
   {
+    path: "/",
+    title: "登录",
+    component: Login,
+  },
+  {
     path: routePath.login,
     title: "登录",
     component: Login,
@@ -30,7 +37,12 @@ export const routeConfig: Array<RouteConfigProps> = [
   {
     path: routePath.register,
     title: "注册",
-    component: Login,
+    component: Register,
+  },
+  {
+    path: routePath.forgot,
+    title: "重置密码",
+    component: Forgot,
   },
   {
     path: routePath.home,
