@@ -6,6 +6,7 @@ import { Link, Control } from "react-keeper";
 import { routePath } from "~/core/route/route.path";
 import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
+import {Request} from '~/core/Request';
 
 @SystemContainer()
 export default class Login extends React.PureComponent {
@@ -17,6 +18,7 @@ export default class Login extends React.PureComponent {
 
   onSubmit = (values) => {
     console.log("Received values of form: ", values);
+    Request();
     Control.go(routePath.home);
   };
   _renderFormItem = (config) => {
@@ -41,7 +43,7 @@ export default class Login extends React.PureComponent {
         onFinish={this.onSubmit}
         onFinishFailed={this.onSubmit}
       >
-        <h1>学籍管理系统-登录</h1>
+        {/*<h1>学籍管理系统-登录</h1>*/}
         {this._renderFormItem({
           name: "username",
           message: "请输入姓名!",
