@@ -7,5 +7,6 @@
 export const ReqUrl = {
     login: 'login',
     register: 'register',
+    forget: 'forget',
     user: 'user'
 };

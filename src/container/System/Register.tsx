@@ -25,6 +25,7 @@ import { lang } from "~/locales/zh-en";
 import { routePath } from "~/core/route/route.path";
 import { EduFormItem } from "~/component/eduFormItem";
 import { LinkTip, TypeProps } from "./LinkTip";
+import { SystemService } from '~/services/System';
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -87,12 +88,8 @@ const tailFormItemLayout = {
   },
 };
 
-const RegistrationForm = () => {
+const RegistrationForm = ({onFinish}) => {
   const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -133,14 +130,6 @@ const RegistrationForm = () => {
         },
         title: "姓名",
       })}
-      {EduFormItem({
-        itemProps: {
-          name: "email",
-          label: "邮箱",
-        },
-        title: "邮箱",
-        setRules: { type: "email", message: "输入的电子邮件无效!" },
-      })}
       <Form.Item
         name="password"
         label="密码"
@@ -176,20 +165,6 @@ const RegistrationForm = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Form.Item
-        name="residence"
-        label="地址"
-        rules={[
-          {
-            type: "array",
-            required: true,
-            message: "",
-          },
-        ]}
-      >
-        <Cascader options={residences} />
-      </Form.Item>
-
       <Form.Item
         name="phone"
         label="手机号码"
@@ -242,7 +217,11 @@ const RegistrationForm = () => {
 };
 @SystemContainer()
 export default class extends React.Component {
+  onSubmit = (values) => {
+    console.log(values);
+    SystemService.register(values);
+  };
   render() {
-    return <RegistrationForm />;
+    return <RegistrationForm onFinish={this.onSubmit}/>;
   }
 }

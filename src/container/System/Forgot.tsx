@@ -10,23 +10,16 @@ import {
   Form,
   Input,
   Tooltip,
-  Cascader,
   Select,
   Row,
   Col,
-  Checkbox,
   Button,
-  AutoComplete,
 } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { SystemContainer } from "~/superClass/SystemContainer";
-import { Link } from "react-keeper";
-import { lang } from "~/locales/zh-en";
-import { routePath } from "~/core/route/route.path";
 import { EduFormItem } from "~/component/eduFormItem";
 import { TypeProps, LinkTip } from "./LinkTip";
-
-const { Option } = Select;
+import { SystemService } from '~/services/System';
 
 const formItemLayout = {
   labelCol: {
@@ -38,21 +31,9 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 };
-const ForgotForm = () => {
+
+const ForgotForm = ({onFinish}) => {
   const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
 
   const [setAutoCompleteResult] = useState([]);
 
@@ -63,10 +44,6 @@ const ForgotForm = () => {
       className="register_form"
       name="register"
       onFinish={onFinish}
-      initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
-      }}
       scrollToFirstError
     >
       <h1>学籍管理系统-重置密码</h1>
@@ -89,7 +66,7 @@ const ForgotForm = () => {
         label="手机号码"
         rules={[{ required: true, message: "请输入你的电话号码!" }]}
       >
-        <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
+        <Input style={{ width: "100%" }} />
       </Form.Item>
       <Form.Item label="验证码" extra="我们必须确保你是人类">
         <Row gutter={8}>
@@ -119,9 +96,14 @@ const ForgotForm = () => {
     </Form>
   );
 };
+
 @SystemContainer()
 export default class extends React.Component {
+  onSubmit = (values) => {
+    console.log(values);
+    SystemService.forget(values);
+  };
   render() {
-    return <ForgotForm />;
+    return <ForgotForm onFinish={this.onSubmit}/>;
   }
 }
