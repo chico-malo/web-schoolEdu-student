@@ -8,7 +8,22 @@ import axios from 'axios';
 
 const baseUrl = (window as any).bastApi;
 
-export const Request = ({method, url, isMock = true, ...other}) => {
+export enum MethodProps {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    PATCH = 'PATCH',
+    DELETE = 'DELETE'
+}
+
+export interface RequestProps {
+    method: MethodProps
+    url: string
+    isMock?: boolean
+    body: any
+}
+
+export const Request = ({method, url, isMock = true, body, ...other}: RequestProps) => {
     let reqUrl = `${baseUrl}${url}`;
     // 修改成访问mock数据
     if (isMock) {
@@ -38,7 +53,6 @@ export const Request = ({method, url, isMock = true, ...other}) => {
     instance.interceptors.response.use(
         function (response) {
             // 对响应数据做点什么
-            console.log(response);
             return response;
         },
         function (error) {
@@ -46,17 +60,24 @@ export const Request = ({method, url, isMock = true, ...other}) => {
         }
     );
 
+    // 参数校验
+    let newBody: any = body;
+    if (method === MethodProps.POST) {
+        newBody = JSON.stringify(body)
+    }
     return instance({
         method,
         url: reqUrl,
+        data: newBody,
         ...other,
     })
         .then(function (response) {
             // 取消请求（message 参数是可选的）
             // source.cancel('Operation canceled by the user.');
-            console.log(response);
+            const {data} = response;
+            return {...data};
         })
         .catch(function (error) {
-            console.log(error);
+            return {success: false, error};
         });
 };
