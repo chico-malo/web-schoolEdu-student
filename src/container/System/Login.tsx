@@ -1,12 +1,13 @@
 import { Form, Input, Button, Checkbox, Row } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import React from "react";
-import { lang } from "../../locales/zh-en";
 import { Link, Control } from "react-keeper";
 import { routePath } from "~/core/route/route.path";
 import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
 import {Request} from '~/core/Request';
+import { lang } from '~/locales/zh-en';
+import { ReqUrl } from "~/constants/ReqUrl";
 
 @SystemContainer()
 export default class Login extends React.PureComponent {
@@ -15,11 +16,10 @@ export default class Login extends React.PureComponent {
    * @param {type} null
    * @return: null
    */
-
   onSubmit = (values) => {
     console.log("Received values of form: ", values);
-    Request();
-    Control.go(routePath.home);
+    Request({method: 'post', url: `${ReqUrl.login}`});
+    // Control.go(routePath.home);
   };
   _renderFormItem = (config) => {
     const { name, message, itemProps, inputProps } = config;
