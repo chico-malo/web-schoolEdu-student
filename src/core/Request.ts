@@ -23,8 +23,8 @@ export interface RequestProps {
     body: any
 }
 
-export const Request = ({method, url, isMock = true, body, ...other}: RequestProps) => {
-    let reqUrl = `${baseUrl}${url}`;
+export const Request = ({method, url, isMock, body, ...other}: RequestProps) => {
+    let reqUrl = `${baseUrl}/api/${url}`;
     // 修改成访问mock数据
     if (isMock) {
         reqUrl = `${baseUrl}/${method}/${url}`;
@@ -33,7 +33,13 @@ export const Request = ({method, url, isMock = true, body, ...other}: RequestPro
     let instance = axios.create({
         baseURL: 'https://some-domain.com/api/',
         timeout: 1000,
-        headers: {'X-Custom-Header': 'foobar'}
+        headers: {
+            'X-Custom-Header': 'foobar',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/login',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Request-Method': 'PUT,POST,GET,DELETE,OPTIONS',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, cc'
+        }
     });
     let CancelToken = axios.CancelToken;
     let source = CancelToken.source();

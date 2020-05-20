@@ -13,19 +13,19 @@
     "pushCi": "git add ./ && git commit -m autoCi && git push"
   },
   "dependencies": {
-    "antd": "^4.1.2",
+    "antd": "^4.2.4",
     "axios": "^0.19.2",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "object-path": "^0.11.4",
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0",
+    "react": ">=16.13.1",
+    "react-dom": ">=16.13.1",
     "react-keeper": "^2.2.2",
     "react-sticky": "^6.0.3",
     "src": "^1.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "babel-plugin-import": "^1.13.0",
     "babel-polyfill": "^6.26.0",
@@ -35,6 +35,6 @@
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "raf": "^3.4.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   }
 }

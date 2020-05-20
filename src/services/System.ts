@@ -16,12 +16,13 @@ class System {
     // 登录
     @action
     async login(body) {
-        const {success} = await Request({
+        const res = await Request({
             method: MethodProps.POST,
             url: `${ReqUrl.login}`,
             body
         });
-        if (success) {
+        console.log('res', res);
+        if (res.success) {
             Control.go(routePath.home);
         }
     }
