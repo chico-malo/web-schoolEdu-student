@@ -41,30 +41,30 @@ export default class Login extends React.PureComponent {
                 initialValues={{remember: false}}
                 onFinish={this.onSubmit}
             >
-                {/*<h1>学籍管理系统-登录</h1>*/}
-                {this._renderFormItem({
-                    name: "username",
-                    message: "请输入姓名!",
-                    inputProps: {
-                        placeholder: "姓名",
-                        prefix: <UserOutlined className="site-form-item-icon"/>,
-                    },
-                })}
-                {this._renderFormItem({
-                    name: "password",
-                    message: "请输入密码!",
-                    inputProps: {
-                        placeholder: "密码",
-                        type: "password",
-                        prefix: <LockOutlined className="site-form-item-icon"/>,
-                    },
-                })}
+                <h1 className="form_title">学籍管理系统-登录</h1>
+                <div className="form_content">
+                    {this._renderFormItem({
+                        name: "username",
+                        message: "请输入姓名!",
+                        inputProps: {
+                            placeholder: "姓名",
+                            prefix: <UserOutlined className="site-form-item-icon"/>,
+                        },
+                    })}
+                    {this._renderFormItem({
+                        name: "password",
+                        message: "请输入密码!",
+                        inputProps: {
+                            placeholder: "密码",
+                            type: "password",
+                            prefix: <LockOutlined className="site-form-item-icon"/>,
+                        },
+                    })}
+                </div>
                 <LinkTip leftType={TypeProps.forgot} rightType={TypeProps.register}/>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="form_button">
-                        {lang.login.sign}
-                    </Button>
-                </Form.Item>
+                <Button type="primary" htmlType="submit" className="form_button">
+                    {lang.login.sign}
+                </Button>
             </Form>
         );
     }
