@@ -5,6 +5,7 @@
  *  // axios详细文档https://www.kancloud.cn/yunye/axios/234845
  */
 import axios from 'axios';
+import { getAccessToken } from '~/utils/localStorageService/edu.service';
 
 const baseUrl = (window as any).bastApi;
 
@@ -35,6 +36,7 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
         timeout: 1000,
         headers: {
             'X-Custom-Header': 'foobar',
+            'Authorization': `Bearer ${getAccessToken()}`
         }
     });
     let CancelToken = axios.CancelToken;
@@ -80,6 +82,7 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
             return {...data};
         })
         .catch(function (error) {
-            return {success: false, error};
+            const {data} = error.response;
+            return data;
         });
 };

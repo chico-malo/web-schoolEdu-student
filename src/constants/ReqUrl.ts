@@ -6,7 +6,7 @@
  */
 export const ReqUrl = {
     login: 'login',
-    register: 'register',
-    forget: 'forget',
+    register: 'user/register',
+    forget: 'user/forget',
     user: 'user'
 };

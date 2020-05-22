@@ -9,6 +9,8 @@ import { MethodProps, Request } from '~/core/Request';
 import { ReqUrl } from '~/constants/ReqUrl';
 import { routePath } from '~/core/route/route.path';
 import { Control } from 'react-keeper';
+import { message } from 'antd';
+import { setAccessToken } from '~/utils/localStorageService/edu.service';
 
 class System {
     @observable processing: boolean = false;
@@ -16,14 +18,17 @@ class System {
     // 登录
     @action
     async login(body) {
-        const res = await Request({
+        const {success, message, payload} = await Request({
             method: MethodProps.POST,
             url: `${ReqUrl.login}`,
             body
         });
-        console.log('res', res);
-        if (res.success) {
+        if (success) {
+            const {access_token} = payload;
+            setAccessToken(access_token);
             Control.go(routePath.home);
+        } else {
+            message.info(message);
         }
     }
 
@@ -42,6 +47,7 @@ class System {
         } catch (error) {
             console.log('error');
         }
+        this.processing = false;
     });
 
     forget = flow(function* (body) {
