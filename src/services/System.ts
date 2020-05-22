@@ -18,20 +18,24 @@ class System {
     // 登录
     @action
     async login(body) {
-        const {success, message, payload} = await Request({
+        this.processing = true;
+        const req = await Request({
             method: MethodProps.POST,
             url: `${ReqUrl.login}`,
             body
         });
+        const {success, payload} = req;
         if (success) {
             const {access_token} = payload;
             setAccessToken(access_token);
             Control.go(routePath.home);
         } else {
-            message.info(message);
+            message.info(req.message);
         }
+        this.processing = false;
     }
 
+    // 注册
     register = flow(function* (body) {
         this.processing = true;
         try {
@@ -40,7 +44,7 @@ class System {
                 url: `${ReqUrl.register}`,
                 body
             });
-            console.log('this', this,  'body', body);
+            console.log('this', this, 'body', body);
             if (success) {
                 Control.go(routePath.home);
             }
@@ -50,6 +54,7 @@ class System {
         this.processing = false;
     });
 
+    // 修改密码
     forget = flow(function* (body) {
         this.processing = true;
         try {

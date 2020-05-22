@@ -66,13 +66,16 @@ const ForgotForm = ({onFinish}) => {
                     name="phone"
                     label="手机号码"
                     rules={[{required: true, message: "请输入你的电话号码!"}]}
+                    children
                 >
                     <Input style={{width: "100%"}}/>
                 </Form.Item>
-                <Form.Item label="验证码" extra="我们必须确保你是人类">
+                <Form.Item label="验证码" extra="我们必须确保你是人类" children
+                >
                     <Row gutter={8}>
                         <Col span={12}>
                             <Form.Item
+                                children
                                 name="captcha"
                                 noStyle
                                 rules={[
@@ -86,7 +89,7 @@ const ForgotForm = ({onFinish}) => {
                             </Form.Item>
                         </Col>
                         <Col span={12}>
-                            <Button>验证码</Button>
+                            <Button>{"验证码"}</Button>
                         </Col>
                     </Row>
                 </Form.Item>

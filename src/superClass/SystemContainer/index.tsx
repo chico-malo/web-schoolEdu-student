@@ -10,20 +10,21 @@ import React from "react";
 import { Row } from "antd";
 import { lang } from "~/locales/zh-en";
 
-export interface SystemContainerProps {}
+export interface SystemContainerProps {
+}
 
 export const SystemContainer = (SystemContainerProps: SystemContainerProps) => (
-  WrappedComponent
+    WrappedComponent
 ) =>
-  class extends React.PureComponent<SystemContainerProps, any> {
-    render() {
-      return (
-        <Row justify="center" align="middle" className="container_system">
-          <WrappedComponent {...this.props} />
-          <Row align="middle" className="system_foot">
-            <span className="foot_copyRight">{lang.CopyRight}</span>
-          </Row>
-        </Row>
-      );
-    }
-  };
+    class extends React.PureComponent<SystemContainerProps, any> {
+        render() {
+            return (
+                <Row justify="center" align="middle" className="container_system">
+                    <WrappedComponent {...this.props} />
+                    <Row align="middle" className="system_foot">
+                        <span className="foot_copyRight">{lang.CopyRight}</span>
+                    </Row>
+                </Row>
+            );
+        }
+    };

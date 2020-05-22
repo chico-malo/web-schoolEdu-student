@@ -34,6 +34,7 @@ export default class Login extends React.PureComponent {
     };
 
     render() {
+        const {processing} = SystemService;
         return (
             <Form
                 name="normal_login"
@@ -62,7 +63,7 @@ export default class Login extends React.PureComponent {
                     })}
                 </div>
                 <LinkTip leftType={TypeProps.forgot} rightType={TypeProps.register}/>
-                <Button type="primary" htmlType="submit" className="form_button">
+                <Button type="primary" htmlType="submit" className="form_button" loading={processing}>
                     {lang.login.sign}
                 </Button>
             </Form>
