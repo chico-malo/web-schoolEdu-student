@@ -6,6 +6,7 @@
  */
 import axios from 'axios';
 import { getAccessToken } from '~/utils/localStorageService/edu.service';
+import { message } from 'antd';
 
 const baseUrl = (window as any).bastApi;
 
@@ -83,6 +84,8 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
         })
         .catch(function (error) {
             const {data} = error.response;
+            console.log('request data', data);
+            message.info(data.message);
             return data;
         });
 };

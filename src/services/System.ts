@@ -29,8 +29,6 @@ class System {
             const {access_token} = payload;
             setAccessToken(access_token);
             Control.go(routePath.home);
-        } else {
-            message.info(req.message);
         }
         this.processing = false;
     }
@@ -44,9 +42,8 @@ class System {
                 url: `${ReqUrl.register}`,
                 body
             });
-            console.log('this', this, 'body', body);
             if (success) {
-                Control.go(routePath.home);
+                this.login(body);
             }
         } catch (error) {
             console.log('error');

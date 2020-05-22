@@ -6,14 +6,15 @@
  * @Description: 用户-注册新用户
  */
 import React, { useState } from "react";
+import { observer } from 'mobx-react';
 import { Button, Checkbox, Col, Form, Input, Row, Select, Tooltip, } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+
 import { SystemContainer } from "~/superClass/SystemContainer";
 import { EduFormItem } from "~/component/eduFormItem";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { SystemService } from '~/services/System';
-
-const {Option} = Select;
+import { lang } from '~/locales/zh-en';
 
 const formItemLayout = {
     labelCol: {
@@ -38,17 +39,8 @@ const tailFormItemLayout = {
     },
 };
 
-const RegistrationForm = ({onFinish}) => {
+const RegistrationForm = ({onFinish, processing}) => {
     const [form] = Form.useForm();
-
-    const prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select style={{width: 70}}>
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-            </Select>
-        </Form.Item>
-    );
 
     const [setAutoCompleteResult] = useState([]);
 
@@ -68,7 +60,7 @@ const RegistrationForm = ({onFinish}) => {
             <div className="form_content">
                 {EduFormItem({
                     itemProps: {
-                        name: "name",
+                        name: "username",
                         label: (
                             <span>
               姓名&nbsp;
@@ -160,14 +152,15 @@ const RegistrationForm = ({onFinish}) => {
                 </Form.Item>
             </div>
             <LinkTip leftType={TypeProps.login} rightType={TypeProps.forgot}/>
-            <Button type="primary" htmlType="submit" className="form_button">
-                注册
+            <Button type="primary" htmlType="submit" className="form_button" loading={processing}>
+                {lang.login.register}
             </Button>
         </Form>
     );
 };
 
 @SystemContainer()
+@observer
 export default class extends React.Component {
     onSubmit = (values) => {
         console.log(values);
@@ -175,6 +168,7 @@ export default class extends React.Component {
     };
 
     render() {
-        return <RegistrationForm onFinish={this.onSubmit}/>;
+        const {processing} = SystemService;
+        return <RegistrationForm onFinish={this.onSubmit} processing={processing}/>;
     }
 }
