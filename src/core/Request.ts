@@ -24,7 +24,7 @@ export interface RequestProps {
 }
 
 export const Request = ({method, url, isMock, body, ...other}: RequestProps) => {
-    let reqUrl = `${baseUrl}/api/${url}`;
+    let reqUrl = `${baseUrl}/${url}`;
     // 修改成访问mock数据
     if (isMock) {
         reqUrl = `${baseUrl}/${method}/${url}`;
@@ -35,10 +35,6 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
         timeout: 1000,
         headers: {
             'X-Custom-Header': 'foobar',
-            'Access-Control-Allow-Origin': 'http://localhost:3000/login',
-            'Access-Control-Allow-Credentials': true,
-            'Access-Control-Request-Method': 'PUT,POST,GET,DELETE,OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, cc'
         }
     });
     let CancelToken = axios.CancelToken;
@@ -69,7 +65,7 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
     // 参数校验
     let newBody: any = body;
     if (method === MethodProps.POST) {
-        newBody = JSON.stringify(body)
+        // newBody = JSON.stringify(body)
     }
     return instance({
         method,
