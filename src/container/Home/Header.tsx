@@ -1,0 +1,35 @@
+/**
+ * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
+ * author: yyao(873241789@qq.com)
+ * date: 2020-05-24
+ */
+import * as React from 'react';
+import { Col, Row } from 'antd';
+import Countdown from 'antd/lib/statistic/Countdown';
+
+class Header extends React.Component {
+
+    render() {
+        const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
+
+        function onFinish() {
+            console.log('finished!');
+        }
+
+        return (
+            <Row gutter={16}>
+                <Col span={12}>
+                    <Countdown title="Countdown" value={deadline} onFinish={onFinish}/>
+                </Col>
+                <Col span={12}>
+                    <Countdown title="Million Seconds" value={deadline} format="HH:mm:ss:SSS"/>
+                </Col>
+                <Col span={24} style={{marginTop: 32}}>
+                    <Countdown title="Day Level" value={deadline} format="D 天 H 时 m 分 s 秒"/>
+                </Col>
+            </Row>
+        )
+    }
+}
+
+export default Header;
