@@ -50,7 +50,7 @@ const ForgotForm = ({onFinish}) => {
             <div className="form_content">
                 {EduFormItem({
                     itemProps: {
-                        name: "name",
+                        name: "username",
                         label: (
                             <span>
               姓名&nbsp;

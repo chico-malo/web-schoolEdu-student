@@ -11,6 +11,7 @@ import { routePath } from '~/core/route/route.path';
 import { Control } from 'react-keeper';
 import { message } from 'antd';
 import { setAccessToken } from '~/utils/localStorageService/edu.service';
+import { UserService } from '~/services/User';
 
 class System {
     @observable processing: boolean = false;
@@ -28,6 +29,8 @@ class System {
         if (success) {
             const {access_token} = payload;
             setAccessToken(access_token);
+            // 获取个人信息
+            UserService.query();
             Control.go(routePath.home);
         }
         this.processing = false;

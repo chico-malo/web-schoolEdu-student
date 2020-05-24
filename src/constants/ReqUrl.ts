@@ -8,5 +8,7 @@ export const ReqUrl = {
     login: 'login',
     register: 'user/register',
     forget: 'user/forget',
-    user: 'user'
+    me: 'me',
+
+    user: 'user',
 };

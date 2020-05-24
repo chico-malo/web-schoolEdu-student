@@ -7,6 +7,8 @@
 import axios from 'axios';
 import { getAccessToken } from '~/utils/localStorageService/edu.service';
 import { message } from 'antd';
+import { Control } from 'react-keeper';
+import { routePath } from '~/core/route/route.path';
 
 const baseUrl = (window as any).bastApi;
 
@@ -19,13 +21,13 @@ export enum MethodProps {
 }
 
 export interface RequestProps {
-    method: MethodProps
+    method?: MethodProps
     url: string
     isMock?: boolean
-    body: any
+    body?: any
 }
 
-export const Request = ({method, url, isMock, body, ...other}: RequestProps) => {
+export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}: RequestProps) => {
     let reqUrl = `${baseUrl}/${url}`;
     // 修改成访问mock数据
     if (isMock) {
@@ -84,8 +86,15 @@ export const Request = ({method, url, isMock, body, ...other}: RequestProps) => 
         })
         .catch(function (error) {
             const {data} = error.response;
-            console.log('request data', data);
-            message.info(data.message);
+            const {status} = data;
+            let errorMsg = data.message;
+            if (status === 401) {
+                errorMsg = '未授权或身份验证已过期';
+                Control.go(routePath.login);
+            }
+            console.log('error data', data);
+            message.info(errorMsg);
+
             return data;
         });
 };
