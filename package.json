@@ -10,7 +10,6 @@
     "start": "parcel src/index.html --open",
     "watch": "parcel watch src/index.html",
     "build": "rm -rf dist/* && parcel  build src/index.html -d dist --public-url ./ entry.js",
-    "push": "git add ./ && git commit -m autoCi && git push"
   },
   "dependencies": {
     "antd": "^4.2.4",
