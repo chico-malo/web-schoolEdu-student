@@ -1,5 +1,5 @@
-import { localStorageService } from '~/utils/localStorageService/index';
 import { eduKey } from '~/utils/localStorageService/edi.key';
+import { localStorageService } from 'ray-web-common/lib/core/sotre';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
