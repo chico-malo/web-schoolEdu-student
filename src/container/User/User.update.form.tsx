@@ -4,61 +4,110 @@
  * date: 2020-05-24
  */
 import * as React from 'react';
-import { Button, Form } from 'antd';
+import { Button, Form, Row } from 'antd';
 import { lang } from '~/locales/zh-en';
-import { EduFormItem } from '~/component/eduFormItem';
-import { SystemService } from '~/services/System';
-import { UserOutlined } from "@ant-design/icons";
-import { RayFormItem } from 'ray-web-common/lib/component/Form/RayFormItem';
+import { FormInstance } from 'antd/es/form';
+import { genderOption } from '~/constants/select.option.gender';
+import { RayFormItem } from '~/component/Form';
 
 export default class UserUpdateForm extends React.Component<any, any> {
+    formRef = React.createRef<FormInstance>();
+
     onSubmit = (values) => {
         console.log("Received values of form: ", values);
-        SystemService.login(values);
     };
+
+    onReset = () => {
+        this.formRef.current.resetFields();
+    }
 
     render() {
         const {processing} = this.props;
+        const itemStyle = {
+            width: '30%',
+            marginLeft: 10
+        };
+        const layout = {
+            labelCol: {span: 8},
+            wrapperCol: {span: 16},
+        }
         return (
-            <Form
-                name="normal_login"
-                className="login_form"
-                initialValues={{remember: false}}
-                onFinish={this.onSubmit}
+            <Form {...layout}
+                  name="normal_login"
+                  className="userCenter_form"
+                  initialValues={{remember: false}}
+                  onFinish={this.onSubmit}
+                  ref={this.formRef}
             >
-                <div className="form_content">
+                <Row className="form_content">
                     {RayFormItem({
                         itemProps: {
-                            label: '姓名',
-                            name: "username",
+                            label: lang.username,
+                            name: "name",
+                            style: itemStyle
                         },
-                        inputProps: {
-                            prefix: <UserOutlined className="site-form-item-icon"/>,
-                        },
+                        inputProps: {},
                     })}
                     {RayFormItem({
                         itemProps: {
-                            label: '性别',
-                            name: "username",
+                            label: lang.gender,
+                            name: "gender",
+                            style: itemStyle
                         },
                         renderType: 'select',
                         inputProps: {
-                            prefix: <UserOutlined className="site-form-item-icon"/>,
+                            options: genderOption
                         },
                     })}
                     {RayFormItem({
                         itemProps: {
-                            name: "username",
-                            label: '班级',
+                            name: 'createAT',
+                            label: lang.createAT,
+                            style: itemStyle
                         },
-                        inputProps: {
-                            prefix: <UserOutlined className="site-form-item-icon"/>,
-                        },
+                        inputProps: {},
                     })}
-                </div>
-                <Button type="primary" htmlType="submit" className="form_button" loading={processing}>
-                    {lang.login.sign}
-                </Button>
+                    {RayFormItem({
+                        itemProps: {
+                            name: "age",
+                            label: lang.age,
+                            style: itemStyle
+                        },
+                        inputProps: {},
+                    })}
+                    {RayFormItem({
+                        itemProps: {
+                            name: "phone",
+                            label: lang.phone,
+                            style: itemStyle
+                        },
+                        inputProps: {},
+                    })}
+                    {RayFormItem({
+                        itemProps: {
+                            name: "email",
+                            label: lang.email,
+                            style: itemStyle
+                        },
+                        inputProps: {},
+                    })}
+                    {RayFormItem({
+                        itemProps: {
+                            name: "class",
+                            label: lang.class,
+                            style: itemStyle
+                        },
+                        inputProps: {},
+                    })}
+                </Row>
+                <Row justify="center">
+                    <Button loading={processing} onClick={this.onReset} className="form_btn">
+                        {lang.reset}
+                    </Button>
+                    <Button type="primary" htmlType="submit" loading={processing} className="form_btn">
+                        {lang.submit}
+                    </Button>
+                </Row>
             </Form>
         )
     }

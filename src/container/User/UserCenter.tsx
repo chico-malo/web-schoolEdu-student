@@ -5,6 +5,7 @@
  * @LastEditTime: 2020-04-20 18:16:25
  * @Description: 个人中心
  */
+import "~/styles/userCenter.less";
 import React from "react";
 import { Skeleton, Switch, Card, Avatar, Row } from "antd";
 import {
@@ -13,16 +14,17 @@ import {
     SettingOutlined,
 } from "@ant-design/icons";
 
-const {Meta} = Card;
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
 import UserUpdateForm from '~/container/User/User.update.form';
+
+const {Meta} = Card;
 
 @BaseContainer({})
 export default class UserCenter extends React.Component<any, any> {
     eduDrawer;
     state = {
-        loading: true,
+        loading: false,
         status: false
     };
 
@@ -44,7 +46,6 @@ export default class UserCenter extends React.Component<any, any> {
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
                     <UserUpdateForm/>
                 </EduDrawer>
-                <Switch checked={!loading} onChange={this.onChange}/>
                 <Card title="个人信息" className="userCenter_card" loading={loading}>
                     <Row>
                         <Card

@@ -11,5 +11,17 @@ export const lang = {
         register: '注册',
         forgot: '忘记密码'
     },
+
+    username: '姓名',
+    gender: '性别',
+    class: '班级',
+    age: '年龄',
+    phone: '手机号',
+    email: '邮箱',
+    createAT: '出生日期',
+
+    reset: '重置',
+    submit: '提交',
+
     CopyRight: "CopyRight©2020 gityy.top,All Rights Reserved yoyo,湘ICP备20007025号"
-}
+};

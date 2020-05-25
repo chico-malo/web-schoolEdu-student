@@ -17,9 +17,9 @@ import {
 } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { SystemContainer } from "~/superClass/SystemContainer";
-import { EduFormItem } from "~/component/eduFormItem";
 import { TypeProps, LinkTip } from "./LinkTip";
 import { SystemService } from '~/services/System';
+import { RayFormItem } from "~/component/Form";
 
 const formItemLayout = {
     labelCol: {
@@ -48,7 +48,7 @@ const ForgotForm = ({onFinish}) => {
         >
             <h1 className="form_title">学籍管理系统-重置密码</h1>
             <div className="form_content">
-                {EduFormItem({
+                {RayFormItem({
                     itemProps: {
                         name: "username",
                         label: (

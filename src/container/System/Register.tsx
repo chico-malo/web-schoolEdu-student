@@ -11,10 +11,10 @@ import { Button, Checkbox, Col, Form, Input, Row, Select, Tooltip, } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { SystemContainer } from "~/superClass/SystemContainer";
-import { EduFormItem } from "~/component/eduFormItem";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { SystemService } from '~/services/System';
 import { lang } from '~/locales/zh-en';
+import { RayFormItem } from "~/component/Form";
 
 const formItemLayout = {
     labelCol: {
@@ -58,7 +58,7 @@ const RegistrationForm = ({onFinish, processing}) => {
         >
             <h1 className="form_title">学籍管理系统-注册</h1>
             <div className="form_content">
-                {EduFormItem({
+                {RayFormItem({
                     itemProps: {
                         name: "username",
                         label: (
