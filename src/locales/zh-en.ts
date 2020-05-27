@@ -25,6 +25,7 @@ export const lang = {
 
     reset: '重置',
     submit: '提交',
+    search:  '搜索',
 
     CopyRight: "CopyRight©2020 gityy.top,All Rights Reserved yoyo,湘ICP备20007025号"
 };

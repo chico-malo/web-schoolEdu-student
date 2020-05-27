@@ -82,11 +82,11 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
         };
         // 老师身份菜单
         _renderTeachMenu = () => {
-            const {collapsed} = this.state;
+            const {collapsed, statePath} = this.state;
             return (
                 <Sider collapsible collapsed={collapsed} onCollapse={this.onTeachCollapse} className="home_teach_box">
                     <RenderMenu config={teachMenu} onMenuLick={this.onMenuLick}
-                                props={{theme: 'dark', mode: 'inline'}}/>
+                                props={{theme: 'dark', mode: 'inline', defaultSelectedKeys: [statePath]}}/>
                 </Sider>
             )
         };

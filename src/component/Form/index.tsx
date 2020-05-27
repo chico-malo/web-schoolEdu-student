@@ -6,11 +6,11 @@
  * @Description: edu-form-item 二次封装antd表单
  */
 import React from "react";
-import { Input, Form, Select } from "antd";
+import { Form, Input } from "antd";
 import { RayFormSelect } from './RayFormSelect';
 
 export const RayFormItem = (config) => {
-    const {setRules = {}, itemProps, inputProps} = config;
+    const {setRules = {}, itemProps, inputProps, required = true} = config;
     const message = `请输入您的${itemProps.label}!`;
     const newInputProps = {
         placeholder: itemProps.label,
@@ -27,7 +27,7 @@ export const RayFormItem = (config) => {
 
     return (
         <Form.Item
-            rules={[{required: true, message, whitespace: true}, setRules]}
+            rules={[{required: required, message, whitespace: true}, setRules]}
             {...itemProps}
         >
             {_renderFormItem()}

@@ -30,7 +30,6 @@ export default class GenerateRoute extends React.Component {
     });
   };
   render() {
-    console.log('index');
     return (
       <HashRouter>
         <div className="application_container">

@@ -17,7 +17,7 @@ export const routePath = {
     userCenter: '/user/center',
 
     course: '/course',
-    courseApply: '/course/apply',
+    courseApply: '/course-apply',
 
     class: '/class',
     teach: "/teach",
