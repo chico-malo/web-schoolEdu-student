@@ -6,19 +6,12 @@
  * @Description: 基本样式 高阶组件
  */
 import React from "react";
-import {
-    UserOutlined,
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-} from "@ant-design/icons";
-import { Layout, Menu, Row, Badge, Avatar, Dropdown } from "antd";
+import { UserOutlined, } from "@ant-design/icons";
+import { Avatar, Badge, Dropdown, Layout, Row } from "antd";
 import { Control } from "react-keeper";
 import { lang } from "~/locales/zh-en";
 import { personalMenuConfig } from "./config/personalMenu";
 import { headerMenu } from "./config/headerMenu";
-import SubMenu from 'antd/es/menu/SubMenu';
 import Sider from 'antd/es/layout/Sider';
 import { RenderMenu } from '~/superClass/BaseContainer/RenderMenu';
 import { teachMenu } from '~/superClass/BaseContainer/config/teachMenu';
@@ -63,7 +56,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
             return (
                 <Header className="home_header">
                     <Row className="header_left">
-                        <div className="left_logo">学籍管理系统-毕业设计</div>
+                        <div className="left_logo">学籍管理系统</div>
                         <RenderMenu config={headerMenu} onMenuLick={this.onMenuLick}
                                     props={{theme: 'dark', mode: 'horizontal', defaultSelectedKeys: [statePath]}}/>
                     </Row>

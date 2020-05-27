@@ -14,18 +14,22 @@ export const lang = {
 
     username: '姓名',
     gender: '性别',
-    course: '课程',
     class: '班级',
     age: '年龄',
     phone: '手机号',
     email: '邮箱',
     createAT: '出生日期',
+    descr: '描述',
 
     teach: '老师',
+    course: {
+        name: '课程名',
+        teach: '任课老师',
+    },
 
     reset: '重置',
     submit: '提交',
-    search:  '搜索',
+    search: '搜索',
 
     CopyRight: "CopyRight©2020 gityy.top,All Rights Reserved yoyo,湘ICP备20007025号"
 };

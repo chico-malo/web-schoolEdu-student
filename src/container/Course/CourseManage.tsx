@@ -8,12 +8,16 @@ import * as React from 'react';
 import { BaseContainer } from '~/superClass/BaseContainer';
 import { SearchForm } from '~/component/Search';
 import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
+import SearchTable from '~/component/SearchTable';
 
 @BaseContainer({})
 export default class CourseManage extends React.Component {
     render() {
         return (
-            <SearchForm fields={courseManageSearch}/>
+            <>
+                <SearchForm fields={courseManageSearch}/>
+                <SearchTable/>
+            </>
         )
     }
 }

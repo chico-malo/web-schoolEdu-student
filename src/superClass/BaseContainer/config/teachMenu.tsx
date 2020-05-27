@@ -17,7 +17,7 @@ import {
 // 头部菜单
 export const teachMenu = [
     {
-        title: lang.course,
+        title: lang.course.name,
         path: routePath.course,
         icon: <PieChartOutlined/>
     },
