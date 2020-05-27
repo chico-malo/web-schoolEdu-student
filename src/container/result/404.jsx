@@ -12,7 +12,7 @@ import { routePath } from "~/core/route/route.path";
 
 export default class Result404 extends React.Component {
   onGotoHome = () => {
-    Control.go(routePath.login);
+    Control.go(routePath.home);
   };
   render() {
     return (

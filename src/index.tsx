@@ -23,6 +23,7 @@ const application = document.getElementById("application");
 
 function App() {
     globalService.query();
+    console.log('1');
     return <GenerateRoute/>;
 }
 
