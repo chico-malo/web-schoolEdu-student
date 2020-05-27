@@ -12,6 +12,7 @@
     z-index: 1;
     width: 100%;
     min-width: @minWidth;
+
     .header_left {
       // logo
       .left_logo {
@@ -24,6 +25,7 @@
         margin: 16px 24px 16px 0;
       }
     }
+
     // 右侧头像
     .header_right {
       width: 200px;
@@ -36,10 +38,22 @@
     }
   }
 
-  // 内容
-  .home_content {
-    padding: 0 50px;
-    margin-top: 64px;
-    min-height: calc(100vh - 70px);
+  // 老师menu
+  .home_teach_box {
+    padding-top: 80px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  .home_content_box {
+    width: 100%;
+    margin: 0 auto;
+    // 内容
+    .home_content {
+      padding: 0 50px;
+      margin-top: 64px;
+      min-height: calc(100vh - 70px);
+    }
   }
 }

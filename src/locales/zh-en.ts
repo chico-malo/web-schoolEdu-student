@@ -14,11 +14,14 @@ export const lang = {
 
     username: '姓名',
     gender: '性别',
+    course: '课程',
     class: '班级',
     age: '年龄',
     phone: '手机号',
     email: '邮箱',
     createAT: '出生日期',
+
+    teach: '老师',
 
     reset: '重置',
     submit: '提交',
