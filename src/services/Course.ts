@@ -32,13 +32,13 @@ class Course {
         }
         this.processing = false;
     });
-    // 新增
-    create = flow(function* (body, callback?) {
+    // 新增 | 编辑
+    update = flow(function* (body, isUpdate, callback?) {
         this.processing = true;
         try {
             const {success} = yield Request({
                 url: `${ReqUrl.course}`,
-                method: MethodProps.POST,
+                method: isUpdate ? MethodProps.PUT : MethodProps.POST,
                 body
             });
             if (success) {

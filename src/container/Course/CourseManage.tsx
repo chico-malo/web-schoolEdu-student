@@ -22,12 +22,15 @@ import { courseUpdateForm } from './config/course.updte.form';
 @observer
 export default class CourseManage extends React.Component {
     eduDrawer;
-
-    componentDidMount() {
-        this.handleSearch();
+    state = {
+        record: {}
     }
 
-    handleSearch = (params = {}) => {
+    componentDidMount() {
+        this.onSearch();
+    }
+
+    onSearch = (params = {}) => {
         CourseService.query(params);
     };
 
@@ -35,14 +38,29 @@ export default class CourseManage extends React.Component {
         this.eduDrawer.onSwitch(true);
     };
 
-    handleSubmit = (values) => {
-        CourseService.create(values, () => {
-            this.eduDrawer.onSwitch(false);
-        });
+    onEdit = (record) => {
+        this.setState({record});
+        this.eduDrawer.onSwitch(true);
     }
+
+    handleSubmit = (values) => {
+        const {record} = this.state;
+        const isUpdate = Object.keys(record).length > 0;
+        const newValues = {
+            ...record,
+            ...values,
+        };
+        CourseService.update(newValues, isUpdate, () => {
+            this.eduDrawer.onSwitch(false);
+            if (isUpdate) {
+                this.setState({record: {}});
+            }
+        });
+    };
 
     render() {
         const {data, processing} = CourseService;
+        const {record} = this.state;
         return (
             <>
                 <PageHeader
@@ -50,10 +68,11 @@ export default class CourseManage extends React.Component {
                     style={{background: '#fff'}}
                     title={lang.menu.course}
                 />
-                <SearchForm fields={courseManageSearch} onSearch={this.handleSearch}/>
-                <SearchTable columns={courseManageColumn} dataSource={data} loading={processing} onAdd={this.onAdd}/>
+                <SearchForm fields={courseManageSearch} onSearch={this.onSearch}/>
+                <SearchTable columns={courseManageColumn} dataSource={data} loading={processing} onAdd={this.onAdd}
+                             onEdit={this.onEdit}/>
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit}/>
+                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
                 </EduDrawer>
             </>
         )
