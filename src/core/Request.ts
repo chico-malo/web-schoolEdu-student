@@ -9,6 +9,7 @@ import { getAccessToken } from '~/utils/localStorageService/edu.service';
 import { message } from 'antd';
 import { Control } from 'react-keeper';
 import { routePath } from '~/core/route/route.path';
+import { RequestUtils } from '~/core/Request/requestUtils';
 
 const baseUrl = (window as any).bastApi;
 
@@ -68,14 +69,15 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
     );
 
     // 参数校验
-    let newBody: any = body;
     if (method === MethodProps.POST) {
         // newBody = JSON.stringify(body)
+    }
+    if (method === MethodProps.GET) {
+        reqUrl = `${reqUrl}?${RequestUtils.setParams(body)}`;
     }
     return instance({
         method,
         url: reqUrl,
-        data: newBody,
         ...other,
     })
         .then(function (response) {

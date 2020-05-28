@@ -9,8 +9,14 @@ import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { lang } from '~/locales/zh-en';
 import { RayFormItem } from '~/component/Form';
 
+export interface SearchForm {
+    fields?: any;
+    onSearch?: (values) => void;
+    onReset?: () => void
+}
+
 // 搜索表单
-export const SearchForm = ({fields}) => {
+export const SearchForm = ({fields, onSearch, onReset}: SearchForm) => {
     const [expand, setExpand] = useState(false);
     const [form] = Form.useForm();
 
@@ -31,7 +37,13 @@ export const SearchForm = ({fields}) => {
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
+        onSearch && onSearch(values);
     };
+
+    const onFormReset = () => {
+        form.resetFields();
+        onReset && onReset();
+    }
 
     return (
         <Card>
@@ -49,9 +61,7 @@ export const SearchForm = ({fields}) => {
                         </Button>
                         <Button
                             style={{margin: '0 8px'}}
-                            onClick={() => {
-                                form.resetFields();
-                            }}
+                            onClick={onFormReset}
                         >
                             {lang.reset}
                         </Button>

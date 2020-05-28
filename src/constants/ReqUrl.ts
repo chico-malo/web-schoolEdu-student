@@ -10,5 +10,7 @@ export const ReqUrl = {
     forget: 'user/forget',
     me: 'me',
 
+    course:  'course',
+
     user: 'user',
 };

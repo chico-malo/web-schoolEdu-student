@@ -5,25 +5,38 @@
  * 课程管理
  */
 import * as React from 'react';
-import { BaseContainer } from '~/superClass/BaseContainer';
-import { SearchForm } from '~/component/Search';
-import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
-import SearchTable from '~/component/SearchTable';
-import { Card, PageHeader } from 'antd';
+import { observer } from 'mobx-react';
+import { CourseService } from '~/services/Course';
+import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
+import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
+import { BaseContainer } from '~/superClass/BaseContainer';
+import { PageHeader } from 'antd';
+import { SearchForm } from '~/component/Search';
+import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 
 @BaseContainer({})
+@observer
 export default class CourseManage extends React.Component {
+    componentDidMount() {
+        this.handleSearch();
+    }
+
+    handleSearch = (params = {}) => {
+        CourseService.query(params);
+    };
+
     render() {
+        const {data, processing} = CourseService;
         return (
             <>
                 <PageHeader
-                    className="site-page-header"
+                    subTitle=""
+                    style={{background: '#fff'}}
                     title={lang.menu.course}
-                    subTitle="This is a subtitle"
                 />
-                <SearchForm fields={courseManageSearch}/>
-                <SearchTable/>
+                <SearchForm fields={courseManageSearch} onSearch={this.handleSearch}/>
+                <SearchTable columns={courseManageColumn} dataSource={data} loading={processing}/>
             </>
         )
     }
