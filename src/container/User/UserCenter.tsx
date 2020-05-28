@@ -7,16 +7,12 @@
  */
 import "~/styles/userCenter.less";
 import React from "react";
-import { Skeleton, Switch, Card, Avatar, Row } from "antd";
-import {
-    EditOutlined,
-    EllipsisOutlined,
-    SettingOutlined,
-} from "@ant-design/icons";
+import { Avatar, Card, Row } from "antd";
+import { EditOutlined, EllipsisOutlined, SettingOutlined, } from "@ant-design/icons";
 
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
-import UserUpdateForm from '~/container/User/User.update.form';
+import UserUpdateForm, { userUpdateForm } from '~/container/User/config/User.update.form';
 
 const {Meta} = Card;
 
@@ -44,7 +40,7 @@ export default class UserCenter extends React.Component<any, any> {
         return (
             <div className="container_userCenter">
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UserUpdateForm/>
+                    <UserUpdateForm fields={userUpdateForm}/>
                 </EduDrawer>
                 <Card title="个人信息" className="userCenter_card" loading={loading}>
                     <Row>

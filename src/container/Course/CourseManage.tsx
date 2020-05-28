@@ -12,7 +12,7 @@ import { lang } from '~/locales/zh-en';
 import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
 import { BaseContainer } from '~/superClass/BaseContainer';
 import { PageHeader } from 'antd';
-import { SearchForm } from '~/component/Search';
+import { SearchForm } from '~/component/SearchForm';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 
 @BaseContainer({})
