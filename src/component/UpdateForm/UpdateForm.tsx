@@ -8,19 +8,22 @@ import * as React from 'react';
 import { Button, Form, Row } from 'antd';
 import { lang } from '~/locales/zh-en';
 import { FormInstance } from 'antd/es/form';
-import { genderOption } from '~/constants/select.option.gender';
 import { RayFormItem } from '~/component/Form';
 
-export default class UserUpdateForm extends React.PureComponent <any, any> {
+export default class UpdateForm extends React.PureComponent <any, any> {
     formRef = React.createRef<FormInstance>();
 
     onSubmit = (values) => {
         console.log("Received values of form: ", values);
+        const {onSubmit} = this.props;
+        onSubmit && onSubmit(values);
     };
 
     onReset = () => {
         this.formRef.current.resetFields();
-    }
+        const {onReset} = this.props;
+        onReset && onReset();
+    };
 
     _renderFormItem = (fields) => {
         return fields.map((item, index) => {
@@ -34,17 +37,14 @@ export default class UserUpdateForm extends React.PureComponent <any, any> {
                     style: itemStyle,
                     ...itemProps
                 },
+                key: index,
                 ...other
             });
         });
-    }
+    };
 
     render() {
-        const {processing, fields} = this.props;
-        const itemStyle = {
-            width: '30%',
-            marginLeft: 10
-        };
+        const {processing, fields, initialValues} = this.props;
         const layout = {
             labelCol: {span: 8},
             wrapperCol: {span: 16},
@@ -53,7 +53,7 @@ export default class UserUpdateForm extends React.PureComponent <any, any> {
             <Form {...layout}
                   name="normal_login"
                   className="userCenter_form"
-                  initialValues={{remember: false}}
+                  initialValues={initialValues}
                   onFinish={this.onSubmit}
                   ref={this.formRef}
             >

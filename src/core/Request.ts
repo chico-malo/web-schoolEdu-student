@@ -69,21 +69,24 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
     );
 
     // 参数校验
-    if (method === MethodProps.POST) {
-        // newBody = JSON.stringify(body)
-    }
     if (method === MethodProps.GET) {
         reqUrl = `${reqUrl}?${RequestUtils.setParams(body)}`;
     }
     return instance({
         method,
         url: reqUrl,
+        data: body,
         ...other,
     })
         .then(function (response) {
             // 取消请求（message 参数是可选的）
             // source.cancel('Operation canceled by the user.');
             const {data} = response;
+            const {status} = data;
+            console.log('response', response);
+            if (status === 409) {
+                message.info(data.response.message);
+            }
             return {...data};
         })
         .catch(function (error) {

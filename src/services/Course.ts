@@ -5,8 +5,9 @@
  * 课程管理
  */
 import { flow, observable } from 'mobx';
-import { Request } from '~/core/Request';
+import { MethodProps, Request } from '~/core/Request';
 import { ReqUrl } from '~/constants/ReqUrl';
+import { message } from 'antd';
 
 class Course {
     @observable
@@ -30,7 +31,26 @@ class Course {
             console.log('error');
         }
         this.processing = false;
-    })
+    });
+    // 新增
+    create = flow(function* (body, callback?) {
+        this.processing = true;
+        try {
+            const {success} = yield Request({
+                url: `${ReqUrl.course}`,
+                method: MethodProps.POST,
+                body
+            });
+            if (success) {
+                message.success('请求成功');
+                callback && callback();
+                this.query();
+            }
+        } catch (error) {
+            console.log('error');
+        }
+        this.processing = false;
+    });
 }
 
 export const CourseService = new Course();

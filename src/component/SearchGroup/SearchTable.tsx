@@ -4,7 +4,7 @@
  * date: 2020-05-27
  */
 import * as React from 'react';
-import { Button, Card, Space, Table } from 'antd';
+import { Alert, Button, Card, Space, Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { CardProps } from 'antd/lib/card';
 
@@ -19,20 +19,32 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
         console.log('params', pagination, filters, sorter, extra);
     }
 
+    onSelectChange = selectedRowKeys => {
+        console.log('selectedRowKeys changed: ', selectedRowKeys);
+    };
+
     render() {
-        const {actionProps, cardProps, ...other} = this.props;
+        const {actionProps, cardProps, onAdd, ...other} = this.props;
+        const total = other.dataSource.length;
         return (
-            <Card {...cardProps}>
+            <Card {...cardProps} style={{marginTop: 20}}>
                 <div {...actionProps}>
                     <Space>
-                        <Button type="primary">新增</Button>
+                        <Button type="primary" onClick={onAdd}>新增</Button>
                         <Button type="primary">编辑</Button>
                         <Button type="primary" danger>删除</Button>
                     </Space>
                 </div>
+                <Alert message={`共${total}条数据`} type="success" style={{margin: '20px 0'}} showIcon/>
                 <Table onChange={this.onChange}
+                       rowSelection={}
                        rowKey="_id"
-                       style={{marginTop: 20}} {...other}/>
+                       size="small"
+                       style={{marginTop: 20}}
+                       pagination={{pageSize: 10, size: 'small', total}}
+                       hideOnSinglePage
+                       {...other}
+                />
             </Card>
         )
     }

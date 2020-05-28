@@ -12,7 +12,8 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined, } from "@ant-design/ic
 
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
-import UserUpdateForm, { userUpdateForm } from '~/container/User/config/User.update.form';
+import UpdateForm from '~/component/UpdateForm/UpdateForm';
+import { userUpdateForm } from '~/container/User/config/user.update.form';
 
 const {Meta} = Card;
 
@@ -40,7 +41,7 @@ export default class UserCenter extends React.Component<any, any> {
         return (
             <div className="container_userCenter">
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UserUpdateForm fields={userUpdateForm}/>
+                    <UpdateForm fields={userUpdateForm}/>
                 </EduDrawer>
                 <Card title="个人信息" className="userCenter_card" loading={loading}>
                     <Row>

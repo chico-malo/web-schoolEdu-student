@@ -14,10 +14,15 @@ import { BaseContainer } from '~/superClass/BaseContainer';
 import { PageHeader } from 'antd';
 import { SearchForm } from '~/component/SearchForm';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
+import { EduDrawer } from '~/component/EduDrawer';
+import UpdateForm from '~/component/UpdateForm/UpdateForm';
+import { courseUpdateForm } from './config/course.updte.form';
 
 @BaseContainer({})
 @observer
 export default class CourseManage extends React.Component {
+    eduDrawer;
+
     componentDidMount() {
         this.handleSearch();
     }
@@ -25,6 +30,16 @@ export default class CourseManage extends React.Component {
     handleSearch = (params = {}) => {
         CourseService.query(params);
     };
+
+    onAdd = () => {
+        this.eduDrawer.onSwitch(true);
+    };
+
+    handleSubmit = (values) => {
+        CourseService.create(values, () => {
+            this.eduDrawer.onSwitch(false);
+        });
+    }
 
     render() {
         const {data, processing} = CourseService;
@@ -36,7 +51,10 @@ export default class CourseManage extends React.Component {
                     title={lang.menu.course}
                 />
                 <SearchForm fields={courseManageSearch} onSearch={this.handleSearch}/>
-                <SearchTable columns={courseManageColumn} dataSource={data} loading={processing}/>
+                <SearchTable columns={courseManageColumn} dataSource={data} loading={processing} onAdd={this.onAdd}/>
+                <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
+                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit}/>
+                </EduDrawer>
             </>
         )
     }

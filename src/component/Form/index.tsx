@@ -10,7 +10,7 @@ import { Form, Input } from "antd";
 import { RayFormSelect } from './RayFormSelect';
 
 export const RayFormItem = (config) => {
-    const {setRules = {}, itemProps, inputProps, required = true} = config;
+    const {setRules = {}, itemProps, inputProps, required = true, key} = config;
     const message = `请输入您的${itemProps.label}!`;
     const newInputProps = {
         placeholder: itemProps.label,
@@ -28,6 +28,7 @@ export const RayFormItem = (config) => {
     return (
         <Form.Item
             rules={[{required: required, message, whitespace: true}, setRules]}
+            key={key}
             {...itemProps}
         >
             {_renderFormItem()}
