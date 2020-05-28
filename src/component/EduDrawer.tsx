@@ -16,9 +16,11 @@ export class EduDrawer extends React.Component<EduDrawerProps, any> {
     state = {
         visible: false
     }
+    // switch开关
     onSwitch = (status = false) => {
         this.setState({visible: status});
     }
+    // 弹框关闭开关
     onClose = () => {
         const {onClose} = this.props;
         this.onSwitch();

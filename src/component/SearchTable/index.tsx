@@ -4,7 +4,7 @@
  * date: 2020-05-27
  */
 import * as React from 'react';
-import { Button, Card, Table } from 'antd';
+import { Button, Card, Space, Table } from 'antd';
 import { lang } from '~/locales/zh-en';
 
 const columns = [
@@ -50,9 +50,11 @@ export default class SearchTable extends React.Component<any, any> {
         return (
             <Card>
                 <div>
-                    <Button type="primary">新增</Button>
-                    <Button type="primary" style={{margin: '0 10px'}}>编辑</Button>
-                    <Button type="primary" danger>删除</Button>
+                    <Space>
+                        <Button type="primary">新增</Button>
+                        <Button type="primary">编辑</Button>
+                        <Button type="primary" danger>删除</Button>
+                    </Space>
                 </div>
                 <Table columns={columns} dataSource={dataSource} onChange={onChange} style={{marginTop: 20}}/>
             </Card>

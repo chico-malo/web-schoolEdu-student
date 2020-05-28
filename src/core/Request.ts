@@ -87,7 +87,7 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
         .catch(function (error) {
             const {data} = error.response;
             const {status} = data;
-            let errorMsg = data.message;
+            let errorMsg = data.message || '网络错误';
             if (status === 401) {
                 errorMsg = '未授权或身份验证已过期';
                 Control.go(routePath.login);

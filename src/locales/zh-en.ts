@@ -31,5 +31,10 @@ export const lang = {
     submit: '提交',
     search: '搜索',
 
+    menu: {
+        course: '课程管理',
+        teach: '老师管理',
+        class: '班级管理'
+    },
     CopyRight: "CopyRight©2020 gityy.top,All Rights Reserved yoyo,湘ICP备20007025号"
 };
