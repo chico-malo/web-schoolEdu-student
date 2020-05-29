@@ -6,6 +6,8 @@ import CourseApply from "~/container/Course/CourseApply";
 import Register from "~/container/System/Register";
 import Forgot from "~/container/System/Forgot";
 import CourseManage from '~/container/Course/CourseManage';
+import TeachManage from '~/container/Teach/TeachManage';
+import { lang } from '~/locales/zh-en';
 
 /*
  * @Author: yyao
@@ -56,8 +58,12 @@ export const routeConfig: Array<RouteConfigProps> = [
         component: CourseApply,
     }, {
         path: routePath.course,
-        title: "课程管理",
+        title: lang.menu.course,
         component: CourseManage,
+    }, {
+        path: routePath.teach,
+        title: lang.menu.teach,
+        component: TeachManage,
     },
     {
         path: routePath.userCenter,

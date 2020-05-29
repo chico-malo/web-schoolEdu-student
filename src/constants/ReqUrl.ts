@@ -11,6 +11,7 @@ export const ReqUrl = {
     me: 'me',
 
     course:  'course',
+    teach: 'teach',
 
     user: 'user',
 };
