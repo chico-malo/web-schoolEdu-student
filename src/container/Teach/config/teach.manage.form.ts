@@ -4,6 +4,7 @@
  * date: 2020-05-29
  */
 import { lang } from '~/locales/zh-en';
+import { genderOption } from '~/constants/select.option.gender';
 
 export const teachUpdateForm = [{
     itemProps: {
@@ -16,7 +17,10 @@ export const teachUpdateForm = [{
         label: lang.gender,
         name: "gender",
     },
-    inputProps: {},
+    renderType: 'select',
+    inputProps: {
+        options: genderOption
+    },
 },  {
     itemProps: {
         label: lang.age,
