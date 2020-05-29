@@ -4,9 +4,10 @@
  * date: 2020-05-27
  */
 import * as React from 'react';
-import { Alert, Button, Card, Space, Table } from 'antd';
+import { Alert, Button, Card, Popconfirm, Row, Space, Table } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { CardProps } from 'antd/lib/card';
+import { lang } from '~/locales/zh-en';
 
 export interface SearchTableProps extends TableProps<any> {
     actionProps?: any;
@@ -15,62 +16,62 @@ export interface SearchTableProps extends TableProps<any> {
 
 export default class SearchTable extends React.Component<SearchTableProps, any> {
 
-    state = {
-        selectedRow: [],
-        selectedRowKeys: []
+    onEdit = (record) => {
+        const {onEdit} = this.props;
+        onEdit && onEdit(record);
     }
 
-    onSelectChange = (selectedRowKeys, selectedRow) => {
-        console.log('selectedRowKeys changed: ', selectedRowKeys, 'record', selectedRow);
-        this.setState({selectedRow, selectedRowKeys});
+    onDel = ({_id}) => {
+        const {onDel} = this.props;
+        const params = {
+            _id
+        };
+        onDel && onDel(params);
     };
 
-    onEdit = () => {
-        const {onEdit} = this.props;
-        const {selectedRow} = this.state;
-        onEdit && onEdit(selectedRow[0]);
-    }
-
-    onDel = () => {
-        const {onDel} = this.props;
-        const {selectedRow} = this.state;
-        onDel && onDel(selectedRow[0]);
-    }
+    generateColumns = () => {
+        const {columns} = this.props;
+        return columns.concat([{
+            title: lang.operation,
+            dataIndex: 'descr',
+            align: 'center',
+            render: (value, record) => {
+                return (
+                    <Space>
+                        <Button size="small" onClick={this.onEdit.bind(this, record)} type="primary">{lang.edit}</Button>
+                        <Popconfirm
+                            title="你确定要删除该条数据？"
+                            onConfirm={this.onDel.bind(this, record)}
+                            okText="确认"
+                            cancelText="取消"
+                        >
+                            <Button size="small" type="primary" danger>{lang.del}</Button>
+                        </Popconfirm>
+                    </Space>
+                )
+            }
+        }]);
+    };
 
     render() {
         const {actionProps, cardProps, onAdd, ...other} = this.props;
-        const {selectedRowKeys} = this.state;
         const total = other.dataSource.length;
-        const rowSelection = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
-        console.log('selectedRowKeys', selectedRowKeys);
-        const isEdit = selectedRowKeys.length === 0 || selectedRowKeys.length > 1;
-        const isDel = selectedRowKeys.length === 0;
-        console.log('isDel', isDel);
         return (
             <Card {...cardProps} style={{marginTop: 20}}>
                 <div {...actionProps}>
                     <Space>
                         <Button type="primary" onClick={onAdd}>新增</Button>
-                        <Button type="primary"
-                                disabled={isEdit}
-                                onClick={this.onEdit}
-                        >编辑</Button>
-                        <Button type="primary" danger disabled={isDel}
-                                onClick={this.onDel}
-                        >删除</Button>
                     </Space>
                 </div>
                 <Alert message={`共${total}条数据`} type="success" style={{margin: '20px 0'}} showIcon/>
-                <Table rowSelection={rowSelection}
-                       rowKey="_id"
-                       size="small"
-                       style={{marginTop: 20}}
-                       pagination={{pageSize: 10, size: 'small', total}}
-                       hideOnSinglePage
-                       {...other}
+                <Table
+                    rowKey="_id"
+                    size="small"
+                    style={{marginTop: 20}}
+                    pagination={{pageSize: 10, size: 'small', total}}
+                    hideOnSinglePage
+                    {...other}
+                    columns={this.generateColumns()}
                 />
             </Card>
         )

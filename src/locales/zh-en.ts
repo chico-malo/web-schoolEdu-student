@@ -30,6 +30,9 @@ export const lang = {
     reset: '重置',
     submit: '提交',
     search: '搜索',
+    edit: '编辑',
+    del: '删除',
+    operation: '操作',
 
     menu: {
         course: '课程管理',

@@ -36,6 +36,7 @@ export default class CourseManage extends React.Component {
 
     onAdd = () => {
         this.eduDrawer.onSwitch(true);
+        this.setState({record: {}});
     };
 
     onEdit = (record) => {
@@ -58,6 +59,10 @@ export default class CourseManage extends React.Component {
         });
     };
 
+    onDel = (id) => {
+        CourseService.del(id);
+    };
+
     render() {
         const {data, processing} = CourseService;
         const {record} = this.state;
@@ -70,7 +75,8 @@ export default class CourseManage extends React.Component {
                 />
                 <SearchForm fields={courseManageSearch} onSearch={this.onSearch}/>
                 <SearchTable columns={courseManageColumn} dataSource={data} loading={processing} onAdd={this.onAdd}
-                             onEdit={this.onEdit}/>
+                             onEdit={this.onEdit} onDel={this.onDel}
+                />
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
                     <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
                 </EduDrawer>

@@ -51,6 +51,25 @@ class Course {
         }
         this.processing = false;
     });
+
+    // 搜索
+    del = flow(function* (body) {
+        this.processing = true;
+        try {
+            const {success} = yield Request({
+                url: `${ReqUrl.course}`,
+                method: MethodProps.DELETE,
+                body
+            });
+            if (success) {
+                message.success('请求成功');
+                this.query();
+            }
+        } catch (error) {
+            console.log('error');
+        }
+        this.processing = false;
+    });
 }
 
 export const CourseService = new Course();
