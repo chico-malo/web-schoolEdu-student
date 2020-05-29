@@ -16,7 +16,7 @@ import { SearchForm } from '~/component/SearchForm';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
-import { courseUpdateForm } from './config/course.updte.form';
+import { courseUpdateForm } from '~/container/Course/config/course.updte.form';
 
 @BaseContainer({})
 @observer

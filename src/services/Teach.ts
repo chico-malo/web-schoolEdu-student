@@ -16,7 +16,7 @@ class Teach {
     public processing: boolean = false;
 
     // 搜索
-    query = flow(function* (body) {
+    query = flow(function* (body = {}) {
         this.processing = true;
         try {
             const {success, payload} = yield Request({

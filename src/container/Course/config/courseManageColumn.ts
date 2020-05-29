@@ -23,6 +23,10 @@ export const courseManageColumn = [
         onFilter: (value, record) => record.name.indexOf(value) === 0,
         sorter: (a, b) => a.name.length - b.name.length,
         sortDirections: ['descend'],
+    },{
+        title: lang.course.total,
+        dataIndex: 'total',
+        render: value => value || '-'
     },
     {
         title: lang.course.teach,

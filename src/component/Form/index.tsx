@@ -18,7 +18,10 @@ export const RayFormItem = (config) => {
     };
 
     const _renderFormItem = () => {
-        const {renderType} = config;
+        const {renderType, render} = config;
+        if (render) {
+            return render(newInputProps);
+        }
         if (renderType === 'select') {
             return <RayFormSelect {...newInputProps}/>
         }

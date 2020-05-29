@@ -25,6 +25,7 @@ export const lang = {
     course: {
         name: '课程名',
         teach: '任课老师',
+        total: '报课人数'
     },
 
     reset: '重置',

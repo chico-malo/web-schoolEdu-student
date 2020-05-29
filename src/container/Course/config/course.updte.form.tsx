@@ -3,7 +3,9 @@
  * author: yyao(873241789@qq.com)
  * date: 2020-05-28
  */
+import * as React from 'react';
 import { lang } from '~/locales/zh-en';
+import { SelectTeach } from '~/constants/select.teach';
 
 export const courseUpdateForm = [{
     itemProps: {
@@ -17,6 +19,7 @@ export const courseUpdateForm = [{
         name: "teach",
     },
     inputProps: {},
+    render: () => <SelectTeach />
 }, {
     itemProps: {
         name: 'descr',
