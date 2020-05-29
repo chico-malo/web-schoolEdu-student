@@ -68,8 +68,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
                     rowKey="_id"
                     size="small"
                     style={{marginTop: 20}}
-                    pagination={{pageSize: 10, size: 'small', total}}
-                    hideOnSinglePage
+                    pagination={{pageSize: 10, size: 'small', total, hideOnSinglePage: true}}
                     {...other}
                     columns={this.generateColumns()}
                 />
