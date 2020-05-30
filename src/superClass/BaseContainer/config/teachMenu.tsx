@@ -17,18 +17,17 @@ import {
 // 头部菜单
 export const teachMenu = [
     {
+        title: lang.menu.teach,
+        path: routePath.teach,
+        icon: <DesktopOutlined/>
+    }, {
         title: lang.menu.course,
         path: routePath.course,
         icon: <PieChartOutlined/>
     },
     {
-        title: lang.menu.teach,
-        path: routePath.teach,
-        icon: <DesktopOutlined/>
-    },
-    {
-        title: lang.menu.class,
-        path: routePath.class,
+        title: lang.menu.grade,
+        path: routePath.grade,
         icon: <UserOutlined/>
     },
 ];

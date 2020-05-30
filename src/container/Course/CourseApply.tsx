@@ -36,7 +36,6 @@ class CourseApply extends React.Component<any, any> {
     }
 
     _renderList = (data) => {
-        console.log('data', data);
         const IconText = ({icon, text}) => (
             <span>
         {React.createElement(icon, {style: {marginRight: 8}})}

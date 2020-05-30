@@ -8,6 +8,7 @@ import Forgot from "~/container/System/Forgot";
 import CourseManage from '~/container/Course/CourseManage';
 import TeachManage from '~/container/Teach/TeachManage';
 import { lang } from '~/locales/zh-en';
+import GradeManage from '~/container/Grade/GradeManage';
 
 /*
  * @Author: yyao
@@ -64,6 +65,10 @@ export const routeConfig: Array<RouteConfigProps> = [
         path: routePath.teach,
         title: lang.menu.teach,
         component: TeachManage,
+    }, {
+        path: routePath.grade,
+        title: lang.menu.grade,
+        component: GradeManage,
     },
     {
         path: routePath.userCenter,

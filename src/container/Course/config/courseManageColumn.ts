@@ -23,15 +23,17 @@ export const courseManageColumn = [
         onFilter: (value, record) => record.name.indexOf(value) === 0,
         sorter: (a, b) => a.name.length - b.name.length,
         sortDirections: ['descend'],
-    },{
-        title: lang.course.total,
-        dataIndex: 'total',
     },
     {
         title: lang.course.teach,
         dataIndex: ['teach', 'name'],
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.teach.length - b.teach.length,
+    },
+    {
+        title: lang.course.total,
+        dataIndex: 'total',
+        sorter: (a, b) => a.total.length - b.total.length,
     },
     {
         title: lang.descr,

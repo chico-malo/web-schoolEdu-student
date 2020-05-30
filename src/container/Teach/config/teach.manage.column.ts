@@ -1,4 +1,5 @@
 import { lang } from '~/locales/zh-en';
+import { genderMapping } from '~/constants/select.option.gender';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
@@ -12,6 +13,7 @@ export const TeachManageColumn = [
     }, {
         title: lang.gender,
         dataIndex: 'gender',
+        render: value => genderMapping[value]
     }, {
         title: lang.age,
         dataIndex: 'age',
@@ -26,5 +28,6 @@ export const TeachManageColumn = [
     {
         title: lang.descr,
         dataIndex: 'descr',
+        width: 350
     },
 ];

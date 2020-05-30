@@ -12,6 +12,7 @@ export const ReqUrl = {
 
     course:  'course',
     teach: 'teach',
+    grade: 'grade',
 
     user: 'user',
 };

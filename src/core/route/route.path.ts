@@ -19,6 +19,6 @@ export const routePath = {
     course: '/course',
     courseApply: '/course-apply',
 
-    class: '/class',
+    grade: '/grade',
     teach: "/teach",
 };
