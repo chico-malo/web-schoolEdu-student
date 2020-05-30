@@ -9,6 +9,7 @@ import "core-js/es/map";
 import "core-js/es/set";
 import "raf/polyfill";
 import "babel-polyfill";
+import 'mobx-react-lite/batchingForReactDom';
 import "normalize.css";
 import "antd/dist/antd.css";
 import "./styles/theme.less";

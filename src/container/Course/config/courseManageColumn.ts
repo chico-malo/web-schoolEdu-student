@@ -26,11 +26,10 @@ export const courseManageColumn = [
     },{
         title: lang.course.total,
         dataIndex: 'total',
-        render: value => value || '-'
     },
     {
         title: lang.course.teach,
-        dataIndex: 'teach',
+        dataIndex: ['teach', 'name'],
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.teach.length - b.teach.length,
     },
