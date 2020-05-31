@@ -28,12 +28,11 @@ export const courseManageColumn = [
         title: lang.course.teach,
         dataIndex: ['teach', 'name'],
         defaultSortOrder: 'descend',
-        sorter: (a, b) => a.teach.length - b.teach.length,
     },
     {
         title: lang.course.total,
         dataIndex: 'total',
-        sorter: (a, b) => a.total.length - b.total.length,
+        sorter: (a, b) => a.total - b.total,
     },
     {
         title: lang.descr,

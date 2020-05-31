@@ -55,7 +55,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
 
     render() {
         const {actionProps, cardProps, onAdd, ...other} = this.props;
-        const total = other.dataSource.length;
+        const total = other.dataSource && other.dataSource.length;
         return (
             <Card {...cardProps} style={{marginTop: 20}}>
                 <div {...actionProps}>

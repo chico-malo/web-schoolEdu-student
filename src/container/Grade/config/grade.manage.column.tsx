@@ -15,6 +15,7 @@ export const GradeManageColumn = [
     }, {
         title: lang.course.name,
         dataIndex: 'courses',
+        width: 300,
         render: value => {
             const setValue = (record) => {
                 const {name, teach} = record;
@@ -30,5 +31,6 @@ export const GradeManageColumn = [
     {
         title: lang.descr,
         dataIndex: 'descr',
+        width: 300,
     },
 ];
