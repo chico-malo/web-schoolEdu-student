@@ -6,17 +6,19 @@
  */
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import { PageHeader } from 'antd';
+import objectPath from 'object-path';
+
 import { CourseService } from '~/services/Course';
-import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
 import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
 import { BaseContainer } from '~/superClass/BaseContainer';
-import { PageHeader } from 'antd';
 import { SearchForm } from '~/component/SearchForm';
+import { courseUpdateForm } from '~/container/Course/config/course.updte.form';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
-import { courseUpdateForm } from '~/container/Course/config/course.updte.form';
+import SearchTable from '~/component/SearchGroup/SearchTable';
 
 @BaseContainer({})
 @observer
@@ -40,7 +42,13 @@ export default class CourseManage extends React.Component {
     };
 
     onEdit = (record) => {
-        this.setState({record});
+        const newTeachId = objectPath.get(record, 'teach._id');
+        // set value
+        const newRecord = {
+            ...record,
+            teach: newTeachId
+        };
+        this.setState({record: newRecord});
         this.eduDrawer.onSwitch(true);
     }
 
