@@ -9,12 +9,16 @@ import React from "react";
 import { UserOutlined, } from "@ant-design/icons";
 import { Avatar, Badge, Dropdown, Layout, Row } from "antd";
 import { Control } from "react-keeper";
+import objectPath from 'object-path';
+
 import { lang } from "~/locales/zh-en";
 import { personalMenuConfig } from "./config/personalMenu";
 import { headerMenu } from "./config/headerMenu";
-import Sider from 'antd/es/layout/Sider';
 import { RenderMenu } from '~/superClass/BaseContainer/RenderMenu';
 import { teachMenu } from '~/superClass/BaseContainer/config/teachMenu';
+import { observer } from 'mobx-react';
+import Sider from 'antd/lib/layout/Sider';
+import { UserService } from '~/services/User';
 
 const {Header, Content, Footer} = Layout;
 
@@ -25,7 +29,7 @@ export interface BaseContainerProps {
 
 export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
     WrappedComponent
-) =>
+) => observer(
     class extends React.PureComponent<BaseContainerProps, any> {
         constructor(props) {
             super(props);
@@ -53,6 +57,8 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
         // 头部
         _renderHeader = () => {
             const {statePath} = this.state;
+            const {userInfo} = UserService;
+            const name = objectPath.get(userInfo, 'username') || 'xxx';
             return (
                 <Header className="home_header">
                     <Row className="header_left">
@@ -66,7 +72,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
                                 <Badge count={1}>
                                     <Avatar shape="square" icon={<UserOutlined/>}/>
                                 </Badge>
-                                <span className="header_right_name">xxxx</span>
+                                <span className="header_right_name">{name}</span>
                             </Row>
                         </Dropdown>
                     </Row>
@@ -99,9 +105,11 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
 
         render() {
             const {isHeader = true, isFooter = true} = BaseContainerProps;
+            const {userInfo} = UserService;
+            const name = objectPath.get(userInfo, 'role');
             return (
                 <Layout className="container_home">
-                    {this._renderTeachMenu()}
+                    {name === '2' || name === '3' && this._renderTeachMenu()}
                     <Layout className="home_content_box">
                         {isHeader && this._renderHeader()}
                         {this._renderContent()}
@@ -110,4 +118,4 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
                 </Layout>
             );
         }
-    };
+    });

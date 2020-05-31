@@ -135,6 +135,24 @@ const RegistrationForm = ({onFinish, processing}) => {
                         </Col>
                     </Row>
                 </Form.Item>
+                <Form.Item label="邀请码" extra="注册老师才需要填写">
+                    <Row gutter={8}>
+                        <Col span={12}>
+                            <Form.Item
+                                name="code"
+                                noStyle
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: "请输入你的邀请码!",
+                                    },
+                                ]}
+                            >
+                                <Input/>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </Form.Item>
                 <Form.Item
                     name="agreement"
                     valuePropName="checked"

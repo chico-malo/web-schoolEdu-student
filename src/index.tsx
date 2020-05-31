@@ -18,12 +18,12 @@ import "./styles/index.less";
 import React from "react";
 import ReactDOM from "react-dom";
 import GenerateRoute from "~/core/route/GenerateRoute";
-import { globalService } from "./services/Global";
+import { GlobalService } from "./services/Global";
 
 const application = document.getElementById("application");
 
 function App() {
-    globalService.query();
+    GlobalService.query();
     return <GenerateRoute/>;
 }
 

@@ -4,13 +4,10 @@
  * date: 2020-05-24
  * 全局savices
  */
-import { flow, observable } from 'mobx';
+import { flow } from 'mobx';
 import { UserService } from '~/services/User';
 
-class Global  {
-    @observable
-    userInfo: object = {};
-
+class Global {
     // 获取全局参数
     query = flow(function* () {
         try {
@@ -22,4 +19,4 @@ class Global  {
     })
 }
 
-export const globalService = new Global();
+export const GlobalService = new Global();
