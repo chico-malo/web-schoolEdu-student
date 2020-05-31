@@ -3,8 +3,10 @@
  * author: yyao(873241789@qq.com)
  * date: 2020-05-24
  */
+import * as React from 'react';
 import { lang } from '~/locales/zh-en';
 import { genderOption } from '~/constants/select.option.gender';
+import { SelectGrade } from '~/constants/select.grade';
 
 
 export const userUpdateForm = [{
@@ -12,7 +14,6 @@ export const userUpdateForm = [{
         label: lang.username,
         name: "name",
     },
-    inputProps: {},
 }, {
     itemProps: {
         label: lang.gender,
@@ -24,32 +25,30 @@ export const userUpdateForm = [{
     },
 }, {
     itemProps: {
-        name: 'createAT',
-        label: lang.createAT,
+        name: 'birthDay',
+        label: lang.birthDay,
+        rules: []
     },
-    inputProps: {},
+    renderType: 'date',
 }, {
     itemProps: {
         name: "age",
         label: lang.age,
     },
-    inputProps: {},
 }, {
     itemProps: {
         name: "phone",
         label: lang.phone,
     },
-    inputProps: {},
 }, {
     itemProps: {
         name: "email",
         label: lang.email,
     },
-    inputProps: {},
 }, {
     itemProps: {
-        name: "class",
-        label: lang.class,
+        name: "grade",
+        label: lang.grade.name,
     },
-    inputProps: {},
-}]
+    render: () => <SelectGrade/>,
+}];

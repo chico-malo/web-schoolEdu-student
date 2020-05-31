@@ -13,6 +13,7 @@ import { StickyContainer, Sticky } from "react-sticky";
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { CourseService } from '~/services/Course';
 import { observer } from 'mobx-react';
+import BaseClass from '~/superClass/BaseClass';
 
 const {TabPane} = Tabs;
 
@@ -30,11 +31,7 @@ const renderTabBar = (props, DefaultTabBar) => (
 
 @BaseContainer({})
 @observer
-class CourseApply extends React.Component<any, any> {
-    componentDidMount() {
-        CourseService.query();
-    }
-
+class CourseApply extends BaseClass<any> {
     _renderList = (data) => {
         const IconText = ({icon, text}) => (
             <span>
@@ -94,14 +91,11 @@ class CourseApply extends React.Component<any, any> {
     };
 
     render() {
-        const {data} = CourseService;
+        const data = this.getUserInfo('grade.courses') || [];
         return (
             <StickyContainer className="container_courseApply">
                 <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
-                    <TabPane tab="可选课程" key="1" className="courseApply_tabPane">
-                        {this._renderList(data)}
-                    </TabPane>
-                    <TabPane tab="已选课程" key="2" className="courseApply_tabPane">
+                    <TabPane tab="本期课程" key="1" className="courseApply_tabPane">
                         {this._renderList(data)}
                     </TabPane>
                 </Tabs>

@@ -19,6 +19,7 @@ import { teachMenu } from '~/superClass/BaseContainer/config/teachMenu';
 import { observer } from 'mobx-react';
 import Sider from 'antd/lib/layout/Sider';
 import { UserService } from '~/services/User';
+import BaseClass from '~/superClass/BaseClass';
 
 const {Header, Content, Footer} = Layout;
 
@@ -30,7 +31,7 @@ export interface BaseContainerProps {
 export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
     WrappedComponent
 ) => observer(
-    class extends React.PureComponent<BaseContainerProps, any> {
+    class extends BaseClass<BaseContainerProps> {
         constructor(props) {
             super(props);
             const pathname: string = (this.props as any).pathname;
@@ -57,8 +58,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
         // 头部
         _renderHeader = () => {
             const {statePath} = this.state;
-            const {userInfo} = UserService;
-            const name = objectPath.get(userInfo, 'username') || 'xxx';
+            const name = this.getUserInfo('username');
             return (
                 <Header className="home_header">
                     <Row className="header_left">

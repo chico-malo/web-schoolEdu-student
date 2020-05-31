@@ -7,18 +7,22 @@
  */
 import "~/styles/userCenter.less";
 import React from "react";
-import { Avatar, Card, Row } from "antd";
+import { Avatar, Card, Descriptions, Row } from "antd";
 import { EditOutlined, EllipsisOutlined, SettingOutlined, } from "@ant-design/icons";
 
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import { userUpdateForm } from '~/container/User/config/user.update.form';
+import BaseClass from '~/superClass/BaseClass';
+import { observer } from 'mobx-react';
+import { UserService } from '~/services/User';
 
 const {Meta} = Card;
 
 @BaseContainer({})
-export default class UserCenter extends React.Component<any, any> {
+@observer
+export default class UserCenter extends BaseClass<any> {
     eduDrawer;
     state = {
         loading: false,
@@ -32,16 +36,29 @@ export default class UserCenter extends React.Component<any, any> {
         this.eduDrawer.onSwitch(true);
     }
 
+    onSubmit = (values) => {
+        const _id = this.getUserInfo('_id');
+        const {grade, ...other} = values;
+        const newValue = {
+            _id,
+            personal: other,
+            grade
+        };
+        console.log('values', newValue);
+        UserService.update(newValue);
+    }
+
     render() {
         const {loading, status} = this.state;
         const config = [];
         for (let i = 0; i < 40; i++) {
             config.push({});
         }
+        const name = this.getUserInfo('username');
         return (
             <div className="container_userCenter">
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UpdateForm fields={userUpdateForm}/>
+                    <UpdateForm fields={userUpdateForm} onSubmit={this.onSubmit}/>
                 </EduDrawer>
                 <Card title="个人信息" className="userCenter_card" loading={loading}>
                     <Row>
@@ -54,8 +71,8 @@ export default class UserCenter extends React.Component<any, any> {
                                 />
                             }
                             actions={[
-                                <SettingOutlined key="setting" onClick={this.onEdit}/>,
-                                <EditOutlined key="edit"/>,
+                                <EditOutlined key="edit" onClick={this.onEdit}/>,
+                                <SettingOutlined key="setting"/>,
                                 <EllipsisOutlined key="ellipsis"/>,
                             ]}
                         >
@@ -63,86 +80,18 @@ export default class UserCenter extends React.Component<any, any> {
                                 avatar={
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                                 }
-                                title="xxxx姓名"
+                                title={name}
                                 description="xxxxx班级信息"
                             />
                         </Card>
-                        <Row className="card_right_info" gutter={5}>
-                            {config.map((item, index) => (
-                                <Row key={index} style={{width: 120}}>
-                                    <span>姓名: xxx</span>
-                                </Row>
-                            ))}
-                        </Row>
-                    </Row>
-                </Card>
-                <Card title="成绩信息" className="userCenter_card" loading={loading}>
-                    <Row>
-                        <Card
-                            className="card_left_info"
-                            cover={
-                                <img
-                                    alt="example"
-                                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                />
-                            }
-                            actions={[
-                                <SettingOutlined key="setting"/>,
-                                <EditOutlined key="edit"/>,
-                                <EllipsisOutlined key="ellipsis"/>,
-                            ]}
-                        >
-                            <Meta
-                                avatar={
-                                    <Avatar
-                                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
-                                }
-                                title="xxxx姓名"
-                                description="xxxxx班级信息"
-                            />
-                        </Card>
-                        < Row className="card_right_info" gutter={5}>
-                            {
-                                config.map((item, index) => (
-                                    <Row key={index} style={{width: 120}}>
-                                        <span>姓名: xxx</span>
-                                    </Row>
-                                ))
-                            }
-                        </Row>
-                    </Row>
-                </Card>
-                <Card title="学籍信息" className="userCenter_card" loading={loading}>
-                    <Row>
-                        <Card
-                            className="card_left_info"
-                            cover={
-                                <img
-                                    alt="example"
-                                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                />
-                            }
-                            actions={[
-                                <SettingOutlined key="setting"/>,
-                                <EditOutlined key="edit"/>,
-                                <EllipsisOutlined key="ellipsis"/>,
-                            ]}
-                        >
-                            <Meta
-                                avatar={
-                                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
-                                }
-                                title="xxxx姓名"
-                                description="xxxxx班级信息"
-                            />
-                        </Card>
-                        <Row className="card_right_info" gutter={5}>
-                            {config.map((item, index) => (
-                                <Row key={index} style={{width: 120}}>
-                                    <span>姓名: xxx</span>
-                                </Row>
-                            ))}
-                        </Row>
+                        <Descriptions title="基本信息" style={{width: '60%', marginLeft: 20}}>
+                            <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+                            <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+                            <Descriptions.Item label="Remark">empty</Descriptions.Item>
+                            <Descriptions.Item label="Address">
+                                No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+                            </Descriptions.Item>
+                        </Descriptions>
                     </Row>
                 </Card>
             </div>

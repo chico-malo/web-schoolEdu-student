@@ -6,7 +6,7 @@
  * @Description: edu-form-item 二次封装antd表单
  */
 import React from "react";
-import { Form, Input } from "antd";
+import { DatePicker, Form, Input } from "antd";
 import { RayFormSelect } from './RayFormSelect';
 
 export const RayFormItem = (config) => {
@@ -24,6 +24,10 @@ export const RayFormItem = (config) => {
         }
         if (renderType === 'select') {
             return <RayFormSelect {...newInputProps}/>
+        }
+        // 年月日
+        if (renderType === 'date') {
+            return <DatePicker {...newInputProps}/>
         }
         return <Input {...newInputProps} placeholder={itemProps.label}/>
     };
