@@ -12,6 +12,7 @@ export const GradeManageColumn = [
     {
         title: lang.grade.name,
         dataIndex: 'name',
+        width: 120
     }, {
         title: lang.course.name,
         dataIndex: 'courses',

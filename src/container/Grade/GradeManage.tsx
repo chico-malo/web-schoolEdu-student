@@ -9,6 +9,7 @@ import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
 import { PageHeader } from 'antd';
+import objectPath from 'object-path';
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import BaseClass from '~/superClass/BaseClass';
@@ -34,7 +35,19 @@ export default class GradeManage extends BaseClass<any> {
     };
 
     onEdit = (record) => {
-        this.setState({record});
+        // 隐射班级value格式
+        const courses = objectPath.get(record, 'courses');
+        const newCourses = [];
+        if (courses) {
+            courses.forEach(item => newCourses.push(item._id));
+        }
+        // set value
+        const newRecord = {
+            ...record,
+            courses: newCourses
+        };
+        this.setState({record: newRecord});
+        console.log('record', record, 'newRecord', newRecord);
         this.eduDrawer.onSwitch(true);
     }
 
