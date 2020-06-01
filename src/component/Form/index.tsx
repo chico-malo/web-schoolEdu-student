@@ -35,13 +35,13 @@ export const RayFormItem = (config: ConfigProps) => {
     const label = objectPath.get(itemProps, 'label');
     const message = `请输入您的${label}!`;
 
-    const newInputProps = {
-        placeholder: label,
-        ...inputProps
-    };
-
     const _renderFormItem = () => {
-        const {renderType, render} = config;
+        const {renderType, render, ...other} = inputProps;
+        // 过滤props
+        const newInputProps = {
+            placeholder: label,
+            ...other
+        };
         if (render) {
             return render(newInputProps);
         }
@@ -51,6 +51,9 @@ export const RayFormItem = (config: ConfigProps) => {
         // 年月日
         if (renderType === 'date') {
             return <DatePicker {...newInputProps}/>
+        }
+        if (renderType === 'password') {
+            return <Input.Password {...newInputProps}/>
         }
         return <Input {...newInputProps}/>
     };

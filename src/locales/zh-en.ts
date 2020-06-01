@@ -12,7 +12,9 @@ export const lang = {
         forgot: '忘记密码'
     },
 
-    username: '姓名',
+    username: '用户名',
+    password: '密码',
+    confirmPassword: '二次确认',
     gender: '性别',
     age: '年龄',
     phone: '手机号',
