@@ -21,6 +21,7 @@ export const lang = {
     email: '邮箱',
     birthDay: '出生日期',
     descr: '描述',
+    captcha: '验证码',
 
     teach: '老师',
     course: {

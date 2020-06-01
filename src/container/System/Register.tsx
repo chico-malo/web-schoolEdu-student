@@ -7,23 +7,25 @@
  */
 import React, { useState } from "react";
 import { observer } from 'mobx-react';
-import { Button, Col, Form, Input, Row, Tooltip, } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Form, } from "antd";
 
 import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { SystemService } from '~/services/System';
 import { lang } from '~/locales/zh-en';
 import { RayFormItem } from "~/component/Form";
+import { formUsername } from "~/constants/formConfig/form.username";
+import { formPhone } from '~/constants/formConfig/form.phone';
+import { formCaptcha } from "~/constants/formConfig/form.captcha";
 
 const formItemLayout = {
     labelCol: {
         xs: {span: 24},
-        sm: {span: 6},
+        sm: {span: 7},
     },
     wrapperCol: {
         xs: {span: 24},
-        sm: {span: 16},
+        sm: {span: 15},
     },
 };
 
@@ -46,41 +48,22 @@ const RegistrationForm = ({onFinish, processing}) => {
         >
             <h1 className="form_title">学籍管理系统-注册</h1>
             <div className="form_content">
+                {formUsername}
                 {RayFormItem({
-                    inputProps: {
-                        name: "username",
-                        placeholder: lang.username,
-                    },
+                    renderType: 'password',
                     itemProps: {
-                        label: (
-                            <Row>
-                                {lang.username}&nbsp;
-                                <Tooltip title="你希望别人怎么称呼你?">
-                                    <QuestionCircleOutlined/>
-                                </Tooltip>
-                            </Row>
-                        ),
-                    }
-                })}
-                {RayFormItem({
-                    inputProps: {
+                        label: lang.password,
                         name: "password",
                         hasFeedback: true,
-                        renderType: 'password'
-                    },
-                    itemProps: {
-                        label: lang.password
                     },
                 })}
                 {RayFormItem({
-                    inputProps: {
-                        name: "confirm",
-                        hasFeedback: true,
-                        dependencies: ["password"],
-                        renderType: 'password'
-                    },
+                    renderType: 'password',
                     itemProps: {
                         label: lang.confirmPassword,
+                        name: "confirm",
+                        dependencies: ["password"],
+                        hasFeedback: true,
                         rules: [
                             {
                                 required: true,
@@ -88,7 +71,8 @@ const RegistrationForm = ({onFinish, processing}) => {
                             },
                             ({getFieldValue}) => ({
                                 validator(rule, value) {
-                                    if (!value || getFieldValue("password") === value) {
+                                    const password = getFieldValue("password");
+                                    if (!value || password === value) {
                                         return Promise.resolve();
                                     }
                                     return Promise.reject("您输入的两个密码不匹配!");
@@ -97,41 +81,14 @@ const RegistrationForm = ({onFinish, processing}) => {
                         ]
                     },
                 })}
+                {formPhone}
+                {formCaptcha}
                 {RayFormItem({
                     inputProps: {
-                        name: "phone",
-                    },
-                    itemProps: {
-                        label: "手机号码"
-                    },
-                })}
-                {RayFormItem({
-                    inputProps: {
-                        name: "captcha",
-                        render: () => (
-                            <Input.Group size="large">
-                                <Row gutter={8}>
-                                    <Col span={16}>
-                                        <Input defaultValue="1122" style={{height: 32}}/>
-                                    </Col>
-                                    <Col span={8}>
-                                        <Button>验证码</Button>
-                                    </Col>
-                                </Row>
-                            </Input.Group>
-                        )
-                    },
-                    itemProps: {
-                        label: "验证码",
-                        extra: '我们必须确保你是人类'
-                    },
-                })}
-                {RayFormItem({
-                    inputProps: {
-                        name: "code",
                         style: {width: 100}
                     },
                     itemProps: {
+                        name: "code",
                         label: "邀请码",
                         extra: '注册老师才需要填写'
                     },

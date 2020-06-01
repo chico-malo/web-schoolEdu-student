@@ -20,7 +20,7 @@ export interface ConfigProps {
     // formItemProps
     itemProps?: ConfigItemProps,
     // 输入框props 具体值得看是什么类型
-    inputProps: any,
+    inputProps?: any,
 
     // 统一设置是否必传
     required?: boolean,
@@ -35,16 +35,18 @@ export const RayFormItem = (config: ConfigProps) => {
     const label = objectPath.get(itemProps, 'label');
     const message = `请输入您的${label}!`;
 
+    const newInputProps = {
+        placeholder: label,
+        ...inputProps
+    };
+
     const _renderFormItem = () => {
-        const {renderType, render, ...other} = inputProps;
-        // 过滤props
-        const newInputProps = {
-            placeholder: label,
-            ...other
-        };
+        const {renderType, render} = config;
+        // 自定义render
         if (render) {
             return render(newInputProps);
         }
+        // select下拉
         if (renderType === 'select') {
             return <RayFormSelect {...newInputProps}/>
         }
@@ -52,6 +54,7 @@ export const RayFormItem = (config: ConfigProps) => {
         if (renderType === 'date') {
             return <DatePicker {...newInputProps}/>
         }
+        // 密码
         if (renderType === 'password') {
             return <Input.Password {...newInputProps}/>
         }
