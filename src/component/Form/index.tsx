@@ -7,13 +7,36 @@
  */
 import React from "react";
 import { DatePicker, Form, Input } from "antd";
+import objectPath from 'object-path';
 import { RayFormSelect } from './RayFormSelect';
+import { FormItemProps } from 'antd/lib/form';
 
-export const RayFormItem = (config) => {
-    const {setRules = {}, itemProps, inputProps, required = true, key} = config;
-    const message = `请输入您的${itemProps.label}!`;
+export interface ConfigItemProps extends FormItemProps {
+    key?: string | number,
+    children?: any
+}
+
+export interface ConfigProps {
+    // formItemProps
+    itemProps?: ConfigItemProps,
+    // 输入框props 具体值得看是什么类型
+    inputProps: any,
+
+    // 统一设置是否必传
+    required?: boolean,
+
+    //
+    renderType?: string,
+    render?: (record) => any
+}
+
+export const RayFormItem = (config: ConfigProps) => {
+    const {itemProps, inputProps, required = true} = config;
+    const label = objectPath.get(itemProps, 'label');
+    const message = `请输入您的${label}!`;
+
     const newInputProps = {
-        placeholder: itemProps.label,
+        placeholder: label,
         ...inputProps
     };
 
@@ -29,13 +52,12 @@ export const RayFormItem = (config) => {
         if (renderType === 'date') {
             return <DatePicker {...newInputProps}/>
         }
-        return <Input {...newInputProps} placeholder={itemProps.label}/>
+        return <Input {...newInputProps}/>
     };
 
     return (
         <Form.Item
-            rules={[{required: required, message, whitespace: true}, setRules]}
-            key={key}
+            rules={[{required: required, message, whitespace: true}]}
             {...itemProps}
         >
             {_renderFormItem()}

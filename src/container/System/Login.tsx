@@ -7,6 +7,7 @@ import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { lang } from '~/locales/zh-en';
 import { SystemService } from '~/services/System';
+import { RayFormItem } from '~/component/Form';
 
 @SystemContainer()
 @observer
@@ -20,18 +21,6 @@ export default class Login extends React.PureComponent {
         console.log("Received values of form: ", values);
         SystemService.login(values);
     };
-    _renderFormItem = (config) => {
-        const {name, message, itemProps, inputProps} = config;
-        return (
-            <Form.Item
-                name={name}
-                rules={[{required: true, message}]}
-                {...itemProps}
-            >
-                <Input {...inputProps} />
-            </Form.Item>
-        );
-    };
 
     render() {
         const {processing} = SystemService;
@@ -44,23 +33,25 @@ export default class Login extends React.PureComponent {
             >
                 <h1 className="form_title">学籍管理系统-登录</h1>
                 <div className="form_content">
-                    {this._renderFormItem({
-                        name: "username",
-                        message: "请输入姓名!",
-                        inputProps: {
-                            placeholder: "姓名",
-                            prefix: <UserOutlined className="site-form-item-icon"/>,
-                        },
-                    })}
-                    {this._renderFormItem({
-                        name: "password",
-                        message: "请输入密码!",
-                        inputProps: {
-                            placeholder: "密码",
-                            type: "password",
-                            prefix: <LockOutlined className="site-form-item-icon"/>,
-                        },
-                    })}
+                    {
+                        RayFormItem({
+                            inputProps: {
+                                name: "username",
+                                placeholder: '用户名',
+                                prefix: <UserOutlined className="site-form-item-icon"/>,
+                            },
+                        })
+                    }
+                    {
+                        RayFormItem({
+                            inputProps: {
+                                name: "password",
+                                type: "password",
+                                placeholder: '密码',
+                                prefix: <LockOutlined className="site-form-item-icon"/>,
+                            },
+                        })
+                    }
                 </div>
                 <LinkTip leftType={TypeProps.forgot} rightType={TypeProps.register}/>
                 <Button type="primary" htmlType="submit" className="form_button" loading={processing}>

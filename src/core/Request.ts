@@ -8,6 +8,7 @@ import axios from 'axios';
 import { getAccessToken } from '~/utils/localStorageService/edu.service';
 import { message } from 'antd';
 import { Control } from 'react-keeper';
+import objectPath from 'object-path';
 import { routePath } from '~/core/route/route.path';
 import { RequestUtils } from '~/core/Request/requestUtils';
 
@@ -90,7 +91,7 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
             return {...data};
         })
         .catch(function (error) {
-            const {data} = error.response;
+            const data = objectPath.get(error, 'response.data') || {status: '', message: ''};
             const {status} = data;
             let errorMsg = data.message || '网络错误';
             if (status === 401) {
