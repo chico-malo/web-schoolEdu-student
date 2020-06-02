@@ -58,7 +58,7 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
         // 头部
         _renderHeader = () => {
             const {statePath} = this.state;
-            const name = this.getUserInfo('username');
+            const name = this.getUserInfo('personal.name') || this.getUserInfo('username');
             return (
                 <Header className="home_header">
                     <Row className="header_left">
@@ -90,10 +90,12 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
             )
         };
         // 内容
-        _renderContent = () => {
+        _renderContent = (isRole) => {
             const marginLeft = this.state.collapsed ? 50 : 180;
+            const contentStyle = isRole ? {marginLeft} : {margin: '50px auto 0'};
+
             return (
-                <Content className="home_content" style={{marginLeft}}>
+                <Content className="home_content" style={contentStyle}>
                     <WrappedComponent {...this.props} />
                 </Content>
             );
@@ -106,13 +108,14 @@ export const BaseContainer = (BaseContainerProps: BaseContainerProps) => (
         render() {
             const {isHeader = true, isFooter = true} = BaseContainerProps;
             const {userInfo} = UserService;
-            const name = objectPath.get(userInfo, 'role');
+            const role = objectPath.get(userInfo, 'role');
+            const isRole = role === '2' || role === '3';
             return (
                 <Layout className="container_home">
-                    {name === '2' || name === '3' && this._renderTeachMenu()}
+                    {isRole && this._renderTeachMenu()}
                     <Layout className="home_content_box">
                         {isHeader && this._renderHeader()}
-                        {this._renderContent()}
+                        {this._renderContent(isRole)}
                         {isFooter && this._renderFooter()}
                     </Layout>
                 </Layout>

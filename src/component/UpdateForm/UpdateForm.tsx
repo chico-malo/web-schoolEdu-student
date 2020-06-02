@@ -9,8 +9,16 @@ import { Button, Form, Row } from 'antd';
 import { lang } from '~/locales/zh-en';
 import { FormInstance } from 'antd/es/form';
 import { RayFormItem } from '~/component/Form';
+import { FormProps } from 'antd/lib/form';
 
-export default class UpdateForm extends React.PureComponent <any, any> {
+export interface UpdateFormProps extends FormProps {
+    onSubmit: (values) => void;
+    onReset: (values) => void;
+    processing: boolean;
+    fields: any
+}
+
+export default class UpdateForm extends React.PureComponent <UpdateFormProps, any> {
     formRef = React.createRef<FormInstance>();
 
     onSubmit = (values) => {
@@ -35,9 +43,9 @@ export default class UpdateForm extends React.PureComponent <any, any> {
             return RayFormItem({
                 itemProps: {
                     style: itemStyle,
+                    key: index,
                     ...itemProps
                 },
-                key: index,
                 ...other
             });
         });
@@ -56,6 +64,7 @@ export default class UpdateForm extends React.PureComponent <any, any> {
                   initialValues={initialValues}
                   onFinish={this.onSubmit}
                   ref={this.formRef}
+                  key="login"
             >
                 <Row className="form_content">
                     {this._renderFormItem(fields)}

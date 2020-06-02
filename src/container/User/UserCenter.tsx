@@ -7,16 +7,19 @@
  */
 import "~/styles/userCenter.less";
 import React from "react";
+import moment from 'moment';
 import { Avatar, Card, Descriptions, Row } from "antd";
 import { EditOutlined, EllipsisOutlined, SettingOutlined, } from "@ant-design/icons";
+import objectPath  from 'object-path';
+import { observer } from 'mobx-react';
 
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import { userUpdateForm } from '~/container/User/config/user.update.form';
 import BaseClass from '~/superClass/BaseClass';
-import { observer } from 'mobx-react';
 import { UserService } from '~/services/User';
+import { lang } from '~/locales/zh-en';
 
 const {Meta} = Card;
 
@@ -45,7 +48,37 @@ export default class UserCenter extends BaseClass<any> {
             grade
         };
         console.log('values', newValue);
-        UserService.update(newValue);
+        UserService.update(newValue, () => {
+            this.eduDrawer.onSwitch(false);
+        });
+    }
+
+    getInitialValues = () => {
+        const personal = this.getUserInfo('personal');
+        const grade = this.getUserInfo('grade._id');
+        let newRecord = {};
+        if (personal) {
+            const {birthDay} = personal;
+            newRecord = {
+                ...personal,
+                birthDay: moment(birthDay),
+                grade
+            }
+        }
+        return newRecord;
+    };
+    _renderDescriptionItem = () => {
+        const personal = this.getUserInfo('personal') || {};
+        return (
+            <Descriptions title="基本信息" style={{width: '60%', marginLeft: 20}}>
+                {
+                    Object.keys(personal).map((key, index) => {
+                        const defaultLabel = objectPath.get(lang, key);
+                        return <Descriptions.Item key={index} label={defaultLabel}>{personal[key]}</Descriptions.Item>
+                    })
+                }
+            </Descriptions>
+        )
     }
 
     render() {
@@ -54,11 +87,13 @@ export default class UserCenter extends BaseClass<any> {
         for (let i = 0; i < 40; i++) {
             config.push({});
         }
-        const name = this.getUserInfo('username');
+        const name = this.getUserInfo('personal.name') || this.getUserInfo('username');
+        const grade = this.getUserInfo('grade.name');
         return (
             <div className="container_userCenter">
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UpdateForm fields={userUpdateForm} onSubmit={this.onSubmit}/>
+                    <UpdateForm fields={userUpdateForm} onSubmit={this.onSubmit}
+                                initialValues={this.getInitialValues()}/>
                 </EduDrawer>
                 <Card title="个人信息" className="userCenter_card" loading={loading}>
                     <Row>
@@ -81,17 +116,10 @@ export default class UserCenter extends BaseClass<any> {
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                                 }
                                 title={name}
-                                description="xxxxx班级信息"
+                                description={grade}
                             />
                         </Card>
-                        <Descriptions title="基本信息" style={{width: '60%', marginLeft: 20}}>
-                            <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-                            <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-                            <Descriptions.Item label="Remark">empty</Descriptions.Item>
-                            <Descriptions.Item label="Address">
-                                No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-                            </Descriptions.Item>
-                        </Descriptions>
+                        {this._renderDescriptionItem()}
                     </Row>
                 </Card>
             </div>

@@ -28,8 +28,11 @@ export default class BaseClass<T extends BaseClassProps> extends React.Component
         return this.isUpdate() ? '编辑信息' : '新增信息';
     }
 
-    getUserInfo = (path) => {
+    getUserInfo = (path = '') => {
         const {userInfo} = UserService;
-        return objectPath.get(userInfo, `${path}`);
+        if (path) {
+            return objectPath.get(userInfo, `${path}`);
+        }
+        return userInfo;
     }
 }

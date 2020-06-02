@@ -15,6 +15,7 @@ export const lang = {
     username: '用户名',
     password: '密码',
     confirmPassword: '二次确认',
+    name: '姓名',
     gender: '性别',
     age: '年龄',
     phone: '手机号',

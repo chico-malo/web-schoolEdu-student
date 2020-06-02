@@ -13,6 +13,7 @@ import { SystemService } from '~/services/System';
 import { formUsername } from '~/constants/formConfig/form.username';
 import { formPhone } from '~/constants/formConfig/form.phone';
 import { formCaptcha } from '~/constants/formConfig/form.captcha';
+import { lang } from '~/locales/zh-en';
 
 const formItemLayout = {
     labelCol: {
@@ -38,6 +39,7 @@ const ForgotForm = ({onFinish}) => {
             name="register"
             onFinish={onFinish}
             scrollToFirstError
+            initialValues={{captcha: '1122'}}
         >
             <h1 className="form_title">学籍管理系统-重置密码</h1>
             <div className="form_content">
@@ -47,7 +49,7 @@ const ForgotForm = ({onFinish}) => {
             </div>
             <LinkTip leftType={TypeProps.login} rightType={TypeProps.register}/>
             <Button type="primary" htmlType="submit" className="form_button">
-                注册
+                {lang.submit}
             </Button>
         </Form>
     );

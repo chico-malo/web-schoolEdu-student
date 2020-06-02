@@ -36,20 +36,24 @@ export default class Login extends React.PureComponent {
                     {
                         RayFormItem({
                             inputProps: {
-                                name: "username",
                                 placeholder: '用户名',
                                 prefix: <UserOutlined className="site-form-item-icon"/>,
                             },
+                            itemProps: {
+                                name: "username",
+                            }
                         })
                     }
                     {
                         RayFormItem({
                             inputProps: {
-                                name: "password",
                                 type: "password",
                                 placeholder: '密码',
                                 prefix: <LockOutlined className="site-form-item-icon"/>,
                             },
+                            itemProps: {
+                                name: "password",
+                            }
                         })
                     }
                 </div>

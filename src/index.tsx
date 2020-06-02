@@ -19,12 +19,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import GenerateRoute from "~/core/route/GenerateRoute";
 import { GlobalService } from "./services/Global";
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 const application = document.getElementById("application");
 
 function App() {
     GlobalService.query();
-    return <GenerateRoute/>;
+    return <ConfigProvider locale={zhCN}>
+        <GenerateRoute/>
+    </ConfigProvider>
 }
 
 ReactDOM.render(App(), application);

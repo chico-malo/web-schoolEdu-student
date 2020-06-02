@@ -92,6 +92,7 @@ const RegistrationForm = ({onFinish, processing}) => {
                         label: "邀请码",
                         extra: '注册老师才需要填写'
                     },
+                    required: false
                 })}
             </div>
             <LinkTip leftType={TypeProps.login} rightType={TypeProps.forgot}/>
