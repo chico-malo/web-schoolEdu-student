@@ -21,4 +21,5 @@ export const routePath = {
 
     grade: '/grade',
     teach: "/teach",
+    student: 'student'
 };

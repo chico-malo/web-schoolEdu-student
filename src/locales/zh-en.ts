@@ -48,6 +48,7 @@ export const lang = {
     operation: '操作',
 
     menu: {
+        student: '学生管理',
         course: '课程管理',
         teach: '老师管理',
         grade: '班级管理'

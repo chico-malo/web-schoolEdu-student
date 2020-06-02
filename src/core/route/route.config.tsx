@@ -9,6 +9,7 @@ import CourseManage from '~/container/Course/CourseManage';
 import TeachManage from '~/container/Teach/TeachManage';
 import { lang } from '~/locales/zh-en';
 import GradeManage from '~/container/Grade/GradeManage';
+import StudentManage from '~/container/student/StudentManage';
 
 /*
  * @Author: yyao
@@ -69,6 +70,10 @@ export const routeConfig: Array<RouteConfigProps> = [
         path: routePath.grade,
         title: lang.menu.grade,
         component: GradeManage,
+    }, {
+        path: routePath.student,
+        title: lang.menu.student,
+        component: StudentManage,
     },
     {
         path: routePath.userCenter,

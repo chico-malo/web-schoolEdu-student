@@ -17,6 +17,11 @@ import {
 // 头部菜单
 export const teachMenu = [
     {
+        title: lang.menu.student,
+        path: routePath.student,
+        icon: <TeamOutlined/>
+    },
+    {
         title: lang.menu.teach,
         path: routePath.teach,
         icon: <DesktopOutlined/>
