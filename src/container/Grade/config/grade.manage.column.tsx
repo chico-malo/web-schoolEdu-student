@@ -23,9 +23,7 @@ export const GradeManageColumn = [
                 return `${name}-${teach.name}`;
             };
             return (
-                <Row>
-                    <Tags config={value} setValue={setValue}/>
-                </Row>
+                <Tags config={value} setValue={setValue}/>
             )
         }
     },

@@ -8,9 +8,8 @@
 import "~/styles/userCenter.less";
 import React from "react";
 import moment from 'moment';
-import { Avatar, Card, Descriptions, Row } from "antd";
+import { Avatar, Card, Row } from "antd";
 import { EditOutlined, EllipsisOutlined, SettingOutlined, } from "@ant-design/icons";
-import objectPath  from 'object-path';
 import { observer } from 'mobx-react';
 
 import { BaseContainer } from "~/superClass/BaseContainer";
@@ -20,6 +19,7 @@ import { userUpdateForm } from '~/container/User/config/user.update.form';
 import BaseClass from '~/superClass/BaseClass';
 import { UserService } from '~/services/User';
 import { lang } from '~/locales/zh-en';
+import { EduDescription } from '~/component/EduDescription';
 
 const {Meta} = Card;
 
@@ -67,60 +67,120 @@ export default class UserCenter extends BaseClass<any> {
         }
         return newRecord;
     };
-    _renderDescriptionItem = () => {
-        const personal = this.getUserInfo('personal') || {};
+    // 渲染个人信息卡片
+    _renderCardInfo = () => {
+        const name = this.getUserInfo('personal.name') || this.getUserInfo('username');
+        const grade = this.getUserInfo('grade.name');
         return (
-            <Descriptions title="基本信息" style={{width: '60%', marginLeft: 20}}>
-                {
-                    Object.keys(personal).map((key, index) => {
-                        const defaultLabel = objectPath.get(lang, key);
-                        return <Descriptions.Item key={index} label={defaultLabel}>{personal[key]}</Descriptions.Item>
-                    })
+            <Card
+                className="card_left_info"
+                cover={
+                    <img
+                        alt="example"
+                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    />
                 }
-            </Descriptions>
+                actions={[
+                    <EditOutlined key="edit" onClick={this.onEdit}/>,
+                    <SettingOutlined key="setting"/>,
+                    <EllipsisOutlined key="ellipsis"/>,
+                ]}
+            >
+                <Meta
+                    avatar={
+                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
+                    }
+                    title={name}
+                    description={grade}
+                />
+            </Card>
         )
-    }
+    };
+    // 个人基本信息
+    _renderBaseInfo = () => {
+        const personal = this.getUserInfo('personal') || {};
+        return <EduDescription containerProps={{
+            title: '基本信息',
+            style: {width: '60%', marginLeft: 20}
+        }}
+                               dataSource={personal}
+        />
+    };
+    _renderGradeInfo = () => {
+        const grade = this.getUserInfo('grade') || {};
+        // 过滤字段
+        const {__v, _id, courses, ...other} = grade;
+        const setValue = (value, key) => {
+            if (key === 'createAt') {
+                return moment(value[key]).format('lll');
+            }
+            return value[key];
+        };
+        const setLabel = (value, key, label) => {
+            if (key === 'name') {
+                return lang.grade.name;
+            }
+            return label;
+        };
+        return <EduDescription containerProps={{
+            title: '班级信息',
+        }}
+                               dataSource={other}
+                               setValue={setValue}
+                               setLabel={setLabel}
+        />
+    };
+    _renderCourseInfo = () => {
+        const courses = this.getUserInfo('grade.courses') || [];
+        return courses.map((item, index) => {
+            const {__v, _id, courses, name, ...other} = item;
+            const setValue = (value, key) => {
+                if (key === 'teach') {
+                    console.log('value', value);
+                    return value.teach.name;
+                }
+                return value[key];
+            };
+            const setLabel = (value, key, label) => {
+                // 总人数
+                if (key === 'total') {
+                    return lang.grade.total;
+                }
+                return label;
+            };
+            return <EduDescription key={index}
+                                   containerProps={{
+                                       title: name,
+                                   }}
+                                   dataSource={other}
+                                   setValue={setValue}
+                                   setLabel={setLabel}
+            />
+        })
+    };
 
     render() {
         const {loading, status} = this.state;
-        const config = [];
-        for (let i = 0; i < 40; i++) {
-            config.push({});
-        }
-        const name = this.getUserInfo('personal.name') || this.getUserInfo('username');
-        const grade = this.getUserInfo('grade.name');
+        const cardProps = {
+            className: 'userCenter_card',
+            loading: loading
+        };
+
         return (
             <div className="container_userCenter">
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
                     <UpdateForm fields={userUpdateForm} onSubmit={this.onSubmit}
                                 initialValues={this.getInitialValues()}/>
                 </EduDrawer>
-                <Card title="个人信息" className="userCenter_card" loading={loading}>
+                <Card title={lang.personalInfo} {...cardProps}>
                     <Row>
-                        <Card
-                            className="card_left_info"
-                            cover={
-                                <img
-                                    alt="example"
-                                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                />
-                            }
-                            actions={[
-                                <EditOutlined key="edit" onClick={this.onEdit}/>,
-                                <SettingOutlined key="setting"/>,
-                                <EllipsisOutlined key="ellipsis"/>,
-                            ]}
-                        >
-                            <Meta
-                                avatar={
-                                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
-                                }
-                                title={name}
-                                description={grade}
-                            />
-                        </Card>
-                        {this._renderDescriptionItem()}
+                        {this._renderCardInfo()}
+                        {this._renderBaseInfo()}
                     </Row>
+                </Card>
+                <Card title={lang.gradeInfo} {...cardProps}>
+                    {this._renderGradeInfo()}
+                    {this._renderCourseInfo()}
                 </Card>
             </div>
         );

@@ -11,11 +11,12 @@ const colors = ['red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'bl
 export const Tags: React.FC = (props) => {
     const {config, setValue} = props;
     return (
-        <Space>
+        <>
             {config.map((item, index) => {
                 const colorRandom = Math.floor(Math.random() * 10 + 1);
-                return <Tag key={index} color={colors[colorRandom]}>{setValue(item)}</Tag>
+                return <Tag key={index} color={colors[colorRandom]}
+                            style={{marginRight: 5, marginBottom: 5}}>{setValue(item)}</Tag>
             })}
-        </Space>
+        </>
     )
 };

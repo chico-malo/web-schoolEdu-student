@@ -21,6 +21,10 @@ import GenerateRoute from "~/core/route/GenerateRoute";
 import { GlobalService } from "./services/Global";
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
+import moment from 'moment';
+
+
+moment.locale(['en-NZ', 'en-AU']);
 
 const application = document.getElementById("application");
 

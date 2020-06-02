@@ -23,8 +23,7 @@ export const lang = {
     birthDay: '出生日期',
     descr: '描述',
     captcha: '验证码',
-
-    teach: '老师',
+    createAt: '创建日期',
     course: {
         name: '课程名',
         teach: '任课老师',
@@ -32,7 +31,14 @@ export const lang = {
     },
     grade: {
         name: '班级名称',
+        total: '同班同学'
     },
+
+    teach: '老师',
+    personalInfo: '个人信息',
+    courseInfo: '课程信息',
+    gradeInfo: '班级信息',
+
 
     reset: '重置',
     submit: '提交',
