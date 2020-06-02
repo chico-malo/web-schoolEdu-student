@@ -27,7 +27,7 @@ export const lang = {
     course: {
         name: '课程名',
         teach: '任课老师',
-        total: '报课人数'
+        total: '全班人数'
     },
     grade: {
         name: '班级名称',
