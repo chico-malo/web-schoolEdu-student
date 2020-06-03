@@ -20,7 +20,6 @@ import { courseManageColumn } from '~/container/Course/config/courseManageColumn
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import SearchTable from '~/component/SearchGroup/SearchTable';
-import { DynamicForm } from '~/component/DynamicForm';
 
 @BaseContainer({})
 @observer

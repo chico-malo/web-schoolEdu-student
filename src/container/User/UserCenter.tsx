@@ -135,9 +135,13 @@ export default class UserCenter extends BaseClass<any> {
         return courses.map((item, index) => {
             const {__v, _id, courses, name, ...other} = item;
             const setValue = (value, key) => {
+                // 老师
                 if (key === 'teach') {
-                    console.log('value', value);
                     return value.teach.name;
+                }
+                // 考试
+                if (key === 'exams') {
+                    return `${value.exams.length}`
                 }
                 return value[key];
             };
@@ -145,6 +149,9 @@ export default class UserCenter extends BaseClass<any> {
                 // 总人数
                 if (key === 'total') {
                     return lang.grade.total;
+                }
+                if (key === 'exams') {
+                    return lang.exams.total;
                 }
                 return label;
             };
