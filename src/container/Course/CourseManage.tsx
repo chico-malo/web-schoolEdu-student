@@ -6,7 +6,7 @@
  */
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { PageHeader } from 'antd';
+import { PageHeader, Row } from 'antd';
 import objectPath from 'object-path';
 
 import { CourseService } from '~/services/Course';
@@ -19,6 +19,7 @@ import { courseManageColumn } from '~/container/Course/config/courseManageColumn
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import SearchTable from '~/component/SearchGroup/SearchTable';
+import { DynamicForm } from '~/component/DynamicForm';
 
 @BaseContainer({})
 @observer
@@ -50,7 +51,7 @@ export default class CourseManage extends React.Component {
         };
         this.setState({record: newRecord});
         this.eduDrawer.onSwitch(true);
-    }
+    };
 
     handleSubmit = (values) => {
         const {record} = this.state;
@@ -86,7 +87,7 @@ export default class CourseManage extends React.Component {
                              onEdit={this.onEdit} onDel={this.onDel}
                 />
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
+                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record} />
                 </EduDrawer>
             </>
         )

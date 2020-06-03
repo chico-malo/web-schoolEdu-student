@@ -19,11 +19,33 @@ export const courseUpdateForm = [{
         name: "teach",
     },
     inputProps: {},
-    render: () => <SelectTeach />
+    render: () => <SelectTeach/>
 }, {
     itemProps: {
         name: 'descr',
         label: lang.descr,
     },
     inputProps: {},
+}, {
+    config: {
+        dynamicName: 'exams',
+        dynamicTitle: '考试配置',
+        dynamicAddName: '添加考试',
+    },
+    dynamicField: [{
+        itemProps: {
+            name: 'name',
+            label: lang.exams.name,
+        },
+    }, {
+        itemProps: {
+            name: 'time',
+            label: lang.exams.time,
+        },
+    }, {
+        itemProps: {
+            name: 'descr',
+            label: lang.descr,
+        },
+    }]
 }];

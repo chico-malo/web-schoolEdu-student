@@ -1,4 +1,5 @@
 import { lang } from '~/locales/zh-en';
+import objectPath from 'object-path';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
@@ -30,9 +31,19 @@ export const courseManageColumn = [
         defaultSortOrder: 'descend',
     },
     {
-        title: lang.course.total,
+        title: lang.exams.total,
         dataIndex: 'total',
-        sorter: (a, b) => a.total - b.total,
+        render: (value, record) => {
+            const exams = objectPath.get(record, 'exams');
+            return exams && exams.length || 0;
+        },
+        sorter: (a, b) => {
+            const aExams = objectPath.get(a, 'exams');
+            const bExams = objectPath.get(b, 'exams');
+            if (aExams && bExams) {
+                return aExams.length - bExams.length;
+            }
+        },
     },
     {
         title: lang.descr,

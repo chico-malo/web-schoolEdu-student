@@ -29,6 +29,11 @@ export const lang = {
         teach: '任课老师',
         total: '全班人数'
     },
+    exams: {
+        name: '考试名称',
+        time: '考试时间',
+        total: '考试次数'
+    },
     grade: {
         name: '班级名称',
         total: '同班同学'
