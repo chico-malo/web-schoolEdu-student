@@ -8,6 +8,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { PageHeader, Row } from 'antd';
 import objectPath from 'object-path';
+import moment from 'moment';
 
 import { CourseService } from '~/services/Course';
 import { lang } from '~/locales/zh-en';
@@ -44,10 +45,20 @@ export default class CourseManage extends React.Component {
 
     onEdit = (record) => {
         const newTeachId = objectPath.get(record, 'teach._id');
+        // 格式化时间
+        const exams = objectPath.get(record, 'exams');
+        const newExams = [];
+        exams.forEach(item => {
+            newExams.push({
+                ...item,
+                time: moment(item.time)
+            })
+        });
         // set value
         const newRecord = {
             ...record,
-            teach: newTeachId
+            teach: newTeachId,
+            exams: newExams
         };
         this.setState({record: newRecord});
         this.eduDrawer.onSwitch(true);
@@ -87,7 +98,7 @@ export default class CourseManage extends React.Component {
                              onEdit={this.onEdit} onDel={this.onDel}
                 />
                 <EduDrawer ref={node => this.eduDrawer = node} title="编辑信息">
-                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record} />
+                    <UpdateForm fields={courseUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
                 </EduDrawer>
             </>
         )

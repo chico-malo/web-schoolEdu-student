@@ -6,6 +6,7 @@
 import * as React from 'react';
 import { lang } from '~/locales/zh-en';
 import { SelectTeach } from '~/constants/select.teach';
+import { Form } from 'antd';
 
 export const courseUpdateForm = [{
     itemProps: {
@@ -41,7 +42,9 @@ export const courseUpdateForm = [{
         itemProps: {
             name: 'time',
             label: lang.exams.time,
+            rules: [{required: true}]
         },
+        renderType: 'date',
     }, {
         itemProps: {
             name: 'descr',
