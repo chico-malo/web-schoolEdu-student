@@ -84,7 +84,6 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
             // source.cancel('Operation canceled by the user.');
             const {data} = response;
             const {status} = data;
-            console.log('response', response);
             if (status === 409) {
                 message.info(data.response.message);
             }
@@ -100,7 +99,6 @@ export const Request = ({method = MethodProps.GET, url, isMock, body, ...other}:
             }
             console.log('error data', data);
             message.info(errorMsg);
-
             return data;
         });
 };

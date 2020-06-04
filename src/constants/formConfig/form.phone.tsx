@@ -1,5 +1,6 @@
 import { RayFormItem } from '~/component/Form';
 import { lang } from '~/locales/zh-en';
+import { FromConfigProps } from '~/constants/formConfig/interfaces/FromConfigProps';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
@@ -7,11 +8,13 @@ import { lang } from '~/locales/zh-en';
  * date: 2020-06-01
  */
 
-export const configPhone = {
-    itemProps: {
-        name: "phone",
-        label: lang.phone
-    },
+export const configPhone = (name: FromConfigProps = 'phone') => {
+    return {
+        itemProps: {
+            name,
+            label: lang.phone
+        },
+    }
 };
 
-export const formPhone = RayFormItem(configPhone);
+export const formPhone = RayFormItem(configPhone());

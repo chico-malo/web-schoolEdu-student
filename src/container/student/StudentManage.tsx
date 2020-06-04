@@ -54,7 +54,6 @@ export default class StudentManage extends BaseClass<any> {
             ...record,
             ...values,
         };
-        console.log('record', record, 'newValue', newValue);
         UserService.update(newValue, isUpdate, () => {
             this.eduDrawer.onSwitch(false);
             if (isUpdate) {

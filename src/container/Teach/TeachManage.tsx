@@ -5,10 +5,13 @@
  */
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import objectPath from 'object-path';
+import { PageHeader } from 'antd';
+import moment from 'moment';
+
 import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
-import { PageHeader } from 'antd';
 import { SearchForm } from '~/component/SearchForm';
 import { EduDrawer } from '~/component/EduDrawer';
 import UpdateForm from '~/component/UpdateForm/UpdateForm';
@@ -45,8 +48,9 @@ export default class CourseManage extends BaseClass<any> {
         const isUpdate = this.isUpdate();
         const newValues = {
             ...record,
-            ...values,
+            ...values.personal,
         };
+        console.log('newValues', newValues);
         TeachService.update(newValues, isUpdate, () => {
             this.eduDrawer.onSwitch(false);
             if (isUpdate) {
@@ -57,6 +61,20 @@ export default class CourseManage extends BaseClass<any> {
 
     onDel = (id) => {
         TeachService.del(id);
+    };
+
+    getInitialValues = (record) => {
+        const birthDay = objectPath.get(record, 'birthDay');
+        let newPersonal = {personal: record};
+        if (birthDay) {
+            newPersonal = {
+                personal: {
+                    ...record,
+                    birthDay: moment(birthDay)
+                }
+            }
+        }
+        return newPersonal;
     };
 
     render() {
@@ -74,7 +92,8 @@ export default class CourseManage extends BaseClass<any> {
                              onEdit={this.onEdit} onDel={this.onDel}
                 />
                 <EduDrawer ref={node => this.eduDrawer = node} title={this.getFormTitle()}>
-                    <UpdateForm fields={teachUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
+                    <UpdateForm fields={teachUpdateForm} onSubmit={this.handleSubmit}
+                                initialValues={this.getInitialValues(record)}/>
                 </EduDrawer>
             </>
         )

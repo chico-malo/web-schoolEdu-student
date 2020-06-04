@@ -14,5 +14,5 @@ export const studentManageSearch = [
     configName('personal.name'),
     configGender('personal.gender'),
     configAge('personal.age'),
-    configPhone
+    configPhone()
 ];

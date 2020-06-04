@@ -7,6 +7,6 @@ import { configGender } from '~/constants/formConfig/form.gender';
  * date: 2020-05-29
  */
 export const teachManageSearch = [
-    configName,
-    configGender
+    configName(),
+    configGender()
 ];
