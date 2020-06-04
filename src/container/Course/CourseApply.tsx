@@ -53,7 +53,7 @@ class CourseApply extends BaseClass<any> {
                 dataSource={data}
                 footer={
                     <div>
-                        <b>你还可以报7门课程</b>
+                        <b>{`本学期共${data.length}门课程`}</b>
                     </div>
                 }
                 renderItem={(item, index) => (

@@ -20,6 +20,7 @@ import BaseClass from '~/superClass/BaseClass';
 import { UserService } from '~/services/User';
 import { lang } from '~/locales/zh-en';
 import { EduDescription } from '~/component/EduDescription';
+import { genderMapping } from '~/constants/select.option.gender';
 
 const {Meta} = Card;
 
@@ -48,7 +49,7 @@ export default class UserCenter extends BaseClass<any> {
             grade
         };
         console.log('values', newValue);
-        UserService.update(newValue, () => {
+        UserService.update(newValue, true, () => {
             this.eduDrawer.onSwitch(false);
         });
     }
@@ -99,11 +100,21 @@ export default class UserCenter extends BaseClass<any> {
     // 个人基本信息
     _renderBaseInfo = () => {
         const personal = this.getUserInfo('personal') || {};
+        const setValue = (value, key) => {
+            if (key === 'birthDay') {
+                return moment(value[key]).format('lll');
+            }
+            if (key === 'gender') {
+                return genderMapping[value[key]];
+            }
+            return value[key];
+        };
         return <EduDescription containerProps={{
             title: '基本信息',
             style: {width: '60%', marginLeft: 20}
         }}
                                dataSource={personal}
+                               setValue={setValue}
         />
     };
     _renderGradeInfo = () => {

@@ -14,6 +14,9 @@ class User {
     userInfo: object = {};
 
     @observable
+    public data: object[] = [];
+
+    @observable
     public processing: boolean = false;
 
     // 获取个人信息
@@ -28,19 +31,37 @@ class User {
         } catch (error) {
             console.log('error');
         }
-    })
+    });
+    // 获取用户列表
+    queryAll = flow(function* (body = {}) {
+        this.processing = true;
+        try {
+            const {success, payload} = yield Request({
+                url: `${ReqUrl.user}`,
+                body
+            });
+            if (success) {
+                this.data = payload;
+            }
+        } catch (error) {
+            console.log('error');
+        }
+        this.processing = false;
+    });
+
     // 完善个人信息
-    update = flow(function* (body, callback?) {
+    update = flow(function* (body, isUpdate = true, callback?) {
         this.processing = true;
         try {
             const {success} = yield Request({
-                url: `${ReqUrl.user}`,
-                method: MethodProps.PATCH,
+                url: isUpdate ? ReqUrl.user : `${ReqUrl.user}/register`,
+                method: isUpdate ? MethodProps.PATCH : MethodProps.POST,
                 body
             });
             if (success) {
                 message.success('请求成功');
                 callback && callback();
+                this.queryAll();
                 this.query();
             }
         } catch (error) {

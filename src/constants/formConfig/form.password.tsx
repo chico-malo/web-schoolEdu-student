@@ -4,14 +4,16 @@ import { lang } from '~/locales/zh-en';
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
  * author: yyao(873241789@qq.com)
- * date: 2020-06-01
+ * date: 2020-06-03
  */
 
-export const configPhone = {
+export const configPassword = {
+    renderType: 'password',
     itemProps: {
-        name: "phone",
-        label: lang.phone
+        label: lang.password,
+        name: "password",
+        hasFeedback: true,
     },
 };
 
-export const formPhone = RayFormItem(configPhone);
+export const formPassword = RayFormItem(configPassword);

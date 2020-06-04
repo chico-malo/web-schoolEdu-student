@@ -5,10 +5,10 @@
  */
 import * as React from "react";
 import { RayFormItem } from '~/component/Form';
-import { Button, Col, Input, Row } from 'antd';
+import { Row } from 'antd';
 import { lang } from '~/locales/zh-en';
 
-export const formCaptcha = RayFormItem({
+export const configCaptcha = {
     inputProps: {
         addonAfter: <Row>验证码</Row>
     },
@@ -17,4 +17,5 @@ export const formCaptcha = RayFormItem({
         name: 'captcha',
         extra: '我们必须确保你是人类'
     },
-});
+}
+export const formCaptcha = RayFormItem(configCaptcha);

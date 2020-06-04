@@ -7,11 +7,26 @@ import * as React from 'react';
 import { lang } from '~/locales/zh-en';
 import { genderOption } from '~/constants/select.option.gender';
 import { SelectGrade } from '~/constants/select.grade';
+import { configUsername } from '~/constants/formConfig/form.username';
+import { configPassword } from '~/constants/formConfig/form.password';
+import { configPasswordConfirm } from '~/constants/formConfig/form.password.confirm';
+import { configPhone } from '~/constants/formConfig/form.phone';
+import { configCaptcha } from '~/constants/formConfig/form.captcha';
+
+// 注册用户表单
+export const userRegisterForm = [
+    configUsername,
+    configPassword,
+    configPasswordConfirm,
+    configPhone,
+    configCaptcha
+];
 
 
-export const userUpdateForm = [{
+// 基本信息表单
+export const userBaseInfoForm = [{
     itemProps: {
-        label: lang.username,
+        label: lang.name,
         name: "name",
     },
 }, {
@@ -37,18 +52,16 @@ export const userUpdateForm = [{
     },
 }, {
     itemProps: {
-        name: "phone",
-        label: lang.phone,
-    },
-}, {
-    itemProps: {
         name: "email",
         label: lang.email,
     },
-}, {
-    itemProps: {
-        name: "grade",
-        label: lang.grade.name,
-    },
-    render: () => <SelectGrade/>,
 }];
+
+export const userUpdateForm = [
+    ...userBaseInfoForm, {
+        itemProps: {
+            name: "grade",
+            label: lang.grade.name,
+        },
+        render: () => <SelectGrade/>,
+    }];

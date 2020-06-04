@@ -19,7 +19,7 @@ export const SystemContainer = (SystemContainerProps: SystemContainerProps) => (
     class extends React.PureComponent<SystemContainerProps, any> {
         render() {
             return (
-                <Row justify="center" align="middle" className="container_system">
+                <Row justify="center" align="middle" className="container_system"  {...SystemContainerProps}>
                     <WrappedComponent {...this.props} />
                     <Row align="middle" className="system_foot">
                         <span className="foot_copyRight">{lang.CopyRight}</span>

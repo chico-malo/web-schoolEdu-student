@@ -13,10 +13,12 @@ import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { SystemService } from '~/services/System';
 import { lang } from '~/locales/zh-en';
-import { RayFormItem } from "~/component/Form";
 import { formUsername } from "~/constants/formConfig/form.username";
 import { formPhone } from '~/constants/formConfig/form.phone';
 import { formCaptcha } from "~/constants/formConfig/form.captcha";
+import { formPassword } from '~/constants/formConfig/form.password';
+import { formCode } from '~/constants/formConfig/form.code';
+import { formPasswordConfirm } from "~/constants/formConfig/form.password.confirm";
 
 const formItemLayout = {
     labelCol: {
@@ -32,7 +34,7 @@ const formItemLayout = {
 const RegistrationForm = ({onFinish, processing}) => {
     const [form] = Form.useForm();
 
-    const [setAutoCompleteResult] = useState([]);
+    // const [setAutoCompleteResult] = useState([]);
 
     return (
         <Form
@@ -49,51 +51,11 @@ const RegistrationForm = ({onFinish, processing}) => {
             <h1 className="form_title">学籍管理系统-注册</h1>
             <div className="form_content">
                 {formUsername}
-                {RayFormItem({
-                    renderType: 'password',
-                    itemProps: {
-                        label: lang.password,
-                        name: "password",
-                        hasFeedback: true,
-                    },
-                })}
-                {RayFormItem({
-                    renderType: 'password',
-                    itemProps: {
-                        label: lang.confirmPassword,
-                        name: "confirm",
-                        dependencies: ["password"],
-                        hasFeedback: true,
-                        rules: [
-                            {
-                                required: true,
-                                message: "请确认您的密码!",
-                            },
-                            ({getFieldValue}) => ({
-                                validator(rule, value) {
-                                    const password = getFieldValue("password");
-                                    if (!value || password === value) {
-                                        return Promise.resolve();
-                                    }
-                                    return Promise.reject("您输入的两个密码不匹配!");
-                                },
-                            }),
-                        ]
-                    },
-                })}
+                {formPassword}
+                {formPasswordConfirm}
                 {formPhone}
                 {formCaptcha}
-                {RayFormItem({
-                    inputProps: {
-                        style: {width: 100}
-                    },
-                    itemProps: {
-                        name: "code",
-                        label: "邀请码",
-                        extra: '注册老师才需要填写'
-                    },
-                    required: false
-                })}
+                {formCode}
             </div>
             <LinkTip leftType={TypeProps.login} rightType={TypeProps.forgot}/>
             <Button type="primary" htmlType="submit" className="form_button" loading={processing}>
@@ -103,7 +65,7 @@ const RegistrationForm = ({onFinish, processing}) => {
     );
 };
 
-@SystemContainer()
+@SystemContainer({})
 @observer
 export default class extends React.Component {
     onSubmit = (values) => {

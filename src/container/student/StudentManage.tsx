@@ -8,7 +8,6 @@ import { observer } from 'mobx-react';
 import { PageHeader } from 'antd';
 import objectPath from 'object-path';
 
-import { StudentService } from '~/services/Student';
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
 import { SearchForm } from '~/component/SearchForm';
@@ -19,6 +18,8 @@ import BaseClass from '~/superClass/BaseClass';
 import { studentManageSearch } from '~/container/student/config/student.manage.search';
 import { studentManageColumn } from '~/container/student/config/student.manage.column';
 import { studentUpdateForm } from '~/container/student/config/student.manage.form';
+import moment from 'moment';
+import { UserService } from '~/services/User';
 
 @BaseContainer({})
 @observer
@@ -33,7 +34,7 @@ export default class StudentManage extends BaseClass<any> {
     }
 
     onSearch = (params = {}) => {
-        StudentService.query(params);
+        UserService.queryAll(params);
     };
 
     onAdd = () => {
@@ -42,37 +43,49 @@ export default class StudentManage extends BaseClass<any> {
     };
 
     onEdit = (record) => {
-        const newTeachId = objectPath.get(record, 'teach._id');
-        // set value
-        const newRecord = {
-            ...record,
-            teach: newTeachId
-        };
-        this.setState({record: newRecord});
+        this.setState({record});
         this.eduDrawer.onSwitch(true);
     };
 
     handleSubmit = (values) => {
         const {record} = this.state;
-        const isUpdate = Object.keys(record).length > 0;
-        const newValues = {
+        const isUpdate = this.isUpdate();
+        const newValue = {
             ...record,
             ...values,
+            personal: values,
         };
-        StudentService.update(newValues, isUpdate, () => {
+        console.log('record', record, 'newValue', newValue);
+        UserService.update(newValue, isUpdate, () => {
             this.eduDrawer.onSwitch(false);
             if (isUpdate) {
                 this.setState({record: {}});
             }
         });
     };
-
     onDel = (id) => {
-        StudentService.del(id);
+        UserService.del(id);
+    };
+
+    getInitialValues = (record) => {
+        const personal = objectPath.get(record, 'personal');
+        const grade = objectPath.get(record, 'grade._id');
+        let newRecord = {};
+        if (personal) {
+            const {birthDay} = personal;
+            newRecord = {
+                ...record,
+                ...personal,
+                confirm: record.password,
+                birthDay: moment(birthDay),
+                grade,
+            }
+        }
+        return newRecord;
     };
 
     render() {
-        const {data, processing} = StudentService;
+        const {data, processing} = UserService;
         const {record} = this.state;
         return (
             <>
@@ -86,7 +99,8 @@ export default class StudentManage extends BaseClass<any> {
                              onEdit={this.onEdit} onDel={this.onDel}
                 />
                 <EduDrawer ref={node => this.eduDrawer = node} title={this.getFormTitle()}>
-                    <UpdateForm fields={studentUpdateForm} onSubmit={this.handleSubmit} initialValues={record}/>
+                    <UpdateForm fields={studentUpdateForm} onSubmit={this.handleSubmit}
+                                initialValues={this.getInitialValues(record)}/>
                 </EduDrawer>
             </>
         )

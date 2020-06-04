@@ -9,7 +9,7 @@ import { lang } from '~/locales/zh-en';
 import { Row, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-export const formUsername = RayFormItem({
+export const configUsername = {
     inputProps: {
         placeholder: lang.username,
     },
@@ -24,4 +24,6 @@ export const formUsername = RayFormItem({
             </Row>
         ),
     }
-})
+};
+
+export const formUsername = RayFormItem(configUsername);
