@@ -99,7 +99,7 @@ export default class StudentManage extends BaseClass<any> {
                              onEdit={this.onEdit} onDel={this.onDel}
                 />
                 <EduDrawer ref={node => this.eduDrawer = node} title={this.getFormTitle()}>
-                    <UpdateForm fields={studentUpdateForm} onSubmit={this.handleSubmit}
+                    <UpdateForm fields={studentUpdateForm(record)} onSubmit={this.handleSubmit}
                                 initialValues={this.getInitialValues(record)}/>
                 </EduDrawer>
             </>

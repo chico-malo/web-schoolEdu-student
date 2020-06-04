@@ -44,10 +44,10 @@ export default class UpdateForm extends React.PureComponent <UpdateFormProps, an
      * @private
      */
     _renderDynamicForm = ({dynamicName, dynamicField, dynamicKey, dynamicTitle, dynamicAddName}) => {
-        return <Form.List name={dynamicName} style={{width: '100%'}} key={dynamicKey}>
+        return <Form.List name={dynamicName} key={dynamicKey}>
             {(fields, {add, remove}) => {
                 return (
-                    <div>
+                    <div style={{width: '100%'}}>
                         <h3>{dynamicTitle}</h3>
                         {fields.map(field => (
                             <Space key={field.key} style={{display: 'flex'}} align="start">
