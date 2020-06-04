@@ -53,7 +53,6 @@ export default class StudentManage extends BaseClass<any> {
         const newValue = {
             ...record,
             ...values,
-            personal: values,
         };
         console.log('record', record, 'newValue', newValue);
         UserService.update(newValue, isUpdate, () => {
@@ -69,19 +68,21 @@ export default class StudentManage extends BaseClass<any> {
 
     getInitialValues = (record) => {
         const personal = objectPath.get(record, 'personal');
+        const birthDay = this.getUserInfo('personal.birthDay') || {};
         const grade = objectPath.get(record, 'grade._id');
-        let newRecord = {};
-        if (personal) {
-            const {birthDay} = personal;
-            newRecord = {
-                ...record,
+        let newPersonal = personal;
+        if (birthDay) {
+            newPersonal = {
                 ...personal,
-                confirm: record.password,
                 birthDay: moment(birthDay),
-                grade,
-            }
+            };
         }
-        return newRecord;
+        return {
+            ...record,
+            personal: newPersonal,
+            confirm: record.password,
+            grade,
+        }
     };
 
     render() {

@@ -3,4 +3,16 @@
  * author: yyao(873241789@qq.com)
  * date: 2020-06-02
  */
-export const studentManageSearch = [];
+import { configUsername } from '~/constants/formConfig/form.username';
+import { configName } from '~/constants/formConfig/form.name';
+import { configGender } from '~/constants/formConfig/form.gender';
+import { configAge } from '~/constants/formConfig/form.age';
+import { configPhone } from '~/constants/formConfig/form.phone';
+
+export const studentManageSearch = [
+    configUsername,
+    configName('personal.name'),
+    configGender('personal.gender'),
+    configAge('personal.age'),
+    configPhone
+];

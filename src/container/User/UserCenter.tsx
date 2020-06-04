@@ -42,11 +42,9 @@ export default class UserCenter extends BaseClass<any> {
 
     onSubmit = (values) => {
         const _id = this.getUserInfo('_id');
-        const {grade, ...other} = values;
         const newValue = {
             _id,
-            personal: other,
-            grade
+            ...values
         };
         console.log('values', newValue);
         UserService.update(newValue, true, () => {
@@ -56,17 +54,20 @@ export default class UserCenter extends BaseClass<any> {
 
     getInitialValues = () => {
         const personal = this.getUserInfo('personal');
+        const birthDay = this.getUserInfo('personal.birthDay') || {};
         const grade = this.getUserInfo('grade._id');
-        let newRecord = {};
-        if (personal) {
-            const {birthDay} = personal;
-            newRecord = {
+        let newPersonal = personal;
+        if (birthDay) {
+            newPersonal = {
                 ...personal,
                 birthDay: moment(birthDay),
-                grade
-            }
+            };
         }
-        return newRecord;
+        return {
+            ...this.getUserInfo(),
+            personal: newPersonal,
+            grade
+        };
     };
     // 渲染个人信息卡片
     _renderCardInfo = () => {
@@ -178,7 +179,7 @@ export default class UserCenter extends BaseClass<any> {
     };
 
     render() {
-        const {loading, status} = this.state;
+        const {loading} = this.state;
         const cardProps = {
             className: 'userCenter_card',
             loading: loading
