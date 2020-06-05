@@ -30,7 +30,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
     };
 
     generateColumns = () => {
-        const {columns} = this.props;
+        const {columns = []} = this.props;
         return columns.concat([{
             title: lang.operation,
             dataIndex: 'descr',
@@ -38,7 +38,8 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
             render: (value, record) => {
                 return (
                     <Space>
-                        <Button size="small" onClick={this.onEdit.bind(this, record)} type="primary">{lang.edit}</Button>
+                        <Button size="small" onClick={this.onEdit.bind(this, record)}
+                                type="primary">{lang.edit}</Button>
                         <Popconfirm
                             title="你确定要删除该条数据？"
                             onConfirm={this.onDel.bind(this, record)}
@@ -57,7 +58,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
         const {actionProps, cardProps, onAdd, ...other} = this.props;
         const total = other.dataSource && other.dataSource.length;
         return (
-            <Card {...cardProps} style={{marginTop: 20}}>
+            <div>
                 <div {...actionProps}>
                     <Space>
                         <Button type="primary" onClick={onAdd}>新增</Button>
@@ -72,7 +73,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
                     {...other}
                     columns={this.generateColumns()}
                 />
-            </Card>
+            </div>
         )
     }
 }

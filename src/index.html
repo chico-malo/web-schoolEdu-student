@@ -22,13 +22,18 @@
 </head>
 <script>
     // window.bastApi = 'https://easy-mock.com/mock/5ebe648f2ec0011bc82b99f6/school';
-    window.bastApi = 'http://127.0.0.1:8007/http://127.0.0.1:3000';
     // window.bastApi = 'http://rap2.taobao.org:38080/app/mock/254370';
+    let bastApi = 'http://127.0.0.1:8007/http://127.0.0.1:3000';
+    // 打包生产
+    if (process.env.NODE_ENV === 'production') {
+        bastApi = 'http://gityy.top/api';
+    }
+    window.bastApi = bastApi
 </script>
 
 <body class="page">
-    <div id="application"></div>
-    <script src="index.tsx"></script>
+<div id="application"></div>
+<script src="index.tsx"></script>
 </body>
 
 </html>
