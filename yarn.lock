@@ -4919,13 +4919,14 @@ range-parser@~1.2.1:
   resolved "https://registry.npm.taobao.org/range-parser/download/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha1-PPNwI9GZ4cJNGlW4SADC8+ZGgDE=
 
-ray-web-common@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npm.taobao.org/ray-web-common/download/ray-web-common-0.0.6.tgz#b54963b04cb7bf9beab9df01b13cae0611769496"
-  integrity sha1-tUljsEy3v5vqud8BsTyuBhF2lJY=
+ray-web-common@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/ray-web-common/-/ray-web-common-0.0.8.tgz#53685f18d50ad059d55a32d5c03a10723342ebf2"
+  integrity sha512-3m51Yw9VTJoQJdVtrjsfVL3EYmLrIofkvTAFoCD3VxoDGjYl3XTRKTSSTrBcmU1s8ezD6GZ4SMrlB6T3Nq8Xmw==
   dependencies:
     antd "^4.2.5"
     axios "^0.19.2"
+    object-path "^0.11.4"
     pre-commit "^1.2.2"
     react "^16.13.1"
     react-dom "^16.13.1"

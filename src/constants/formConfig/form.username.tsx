@@ -4,10 +4,10 @@
  * date: 2020-06-01
  */
 import React from "react";
-import { RayFormItem } from '~/component/Form';
 import { lang } from '~/locales/zh-en';
 import { Row, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { RayFormItem } from 'ray-web-common/lib/component/Form';
 
 export const configUsername = {
     inputProps: {

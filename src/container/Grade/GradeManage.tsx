@@ -5,17 +5,17 @@
  */
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
 import { PageHeader } from 'antd';
 import objectPath from 'object-path';
 import { EduDrawer } from '~/component/EduDrawer';
-import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import BaseClass from '~/superClass/BaseClass';
 import { GradeService } from '~/services/Grade';
 import { GradeUpdateForm } from '~/container/Grade/config/grade.manage.form';
 import { GradeManageColumn } from '~/container/Grade/config/grade.manage.column';
+import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
+import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 @BaseContainer({})
 @observer

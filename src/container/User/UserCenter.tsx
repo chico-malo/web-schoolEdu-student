@@ -14,13 +14,13 @@ import { observer } from 'mobx-react';
 
 import { BaseContainer } from "~/superClass/BaseContainer";
 import { EduDrawer } from '~/component/EduDrawer';
-import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import { userUpdateForm } from '~/container/User/config/user.update.form';
 import BaseClass from '~/superClass/BaseClass';
 import { UserService } from '~/services/User';
 import { lang } from '~/locales/zh-en';
 import { EduDescription } from '~/component/EduDescription';
 import { genderMapping } from '~/constants/select.option.gender';
+import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 const {Meta} = Card;
 

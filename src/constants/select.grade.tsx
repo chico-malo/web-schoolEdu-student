@@ -4,9 +4,9 @@
  * date: 2020-05-31
  */
 import React, { useEffect } from 'react';
-import { RayFormSelect, RayFormSelectProps } from '~/component/Form/RayFormSelect';
 import { observer } from 'mobx-react';
 import { GradeService } from '~/services/Grade';
+import { RayFormSelect, RayFormSelectProps } from 'ray-web-common/lib/component/Form/RayFormSelect';
 
 //
 const GradehHook: React.FC = (props: RayFormSelectProps) => {

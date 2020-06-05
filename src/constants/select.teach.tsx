@@ -5,9 +5,9 @@
  * 老师select
  */
 import React, { useEffect } from 'react';
-import { RayFormSelect, RayFormSelectProps } from '~/component/Form/RayFormSelect';
 import { observer } from 'mobx-react';
 import { TeachService } from '~/services/Teach';
+import { RayFormSelectProps, RayFormSelect } from 'ray-web-common/lib/component/Form/RayFormSelect';
 
 //
 const TeachHook: React.FC = (props: RayFormSelectProps) => {

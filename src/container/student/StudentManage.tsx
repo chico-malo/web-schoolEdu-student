@@ -10,16 +10,16 @@ import objectPath from 'object-path';
 
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
-import { SearchForm } from '~/component/SearchForm';
 import { EduDrawer } from '~/component/EduDrawer';
-import UpdateForm from '~/component/UpdateForm/UpdateForm';
-import SearchTable from '~/component/SearchGroup/SearchTable';
 import BaseClass from '~/superClass/BaseClass';
 import { studentManageSearch } from '~/container/student/config/student.manage.search';
 import { studentManageColumn } from '~/container/student/config/student.manage.column';
 import { studentUpdateForm } from '~/container/student/config/student.manage.form';
 import moment from 'moment';
 import { UserService } from '~/services/User';
+import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
+import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
+import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 @BaseContainer({})
 @observer

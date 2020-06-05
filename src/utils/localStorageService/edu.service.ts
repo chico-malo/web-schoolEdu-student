@@ -1,5 +1,5 @@
 import { eduKey } from '~/utils/localStorageService/edi.key';
-import { localStorageService } from 'ray-web-common/lib/core/sotre';
+import { LocalStorageService } from 'ray-web-common/lib/core/sotre';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved
@@ -9,9 +9,9 @@ import { localStorageService } from 'ray-web-common/lib/core/sotre';
 
 // setToken
 export const setAccessToken = data => {
-    localStorageService.setStorage(eduKey.accessToken, data);
+    LocalStorageService.setStorage(eduKey.accessToken, data);
 };
 // getToken
 export const getAccessToken = () => {
-    return localStorageService.getStorage(eduKey.accessToken);
+    return LocalStorageService.getStorage(eduKey.accessToken);
 };

@@ -14,12 +14,12 @@ import { CourseService } from '~/services/Course';
 import { lang } from '~/locales/zh-en';
 import { courseManageSearch } from '~/container/Course/config/courseManageSearch';
 import { BaseContainer } from '~/superClass/BaseContainer';
-import { SearchForm } from '~/component/SearchForm';
 import { courseUpdateForm } from '~/container/Course/config/course.updte.form';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 import { EduDrawer } from '~/component/EduDrawer';
-import UpdateForm from '~/component/UpdateForm/UpdateForm';
-import SearchTable from '~/component/SearchGroup/SearchTable';
+import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
+import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
+import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 @BaseContainer({})
 @observer

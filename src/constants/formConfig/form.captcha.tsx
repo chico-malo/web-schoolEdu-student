@@ -4,9 +4,9 @@
  * date: 2020-06-01
  */
 import * as React from "react";
-import { RayFormItem } from '~/component/Form';
 import { Row } from 'antd';
 import { lang } from '~/locales/zh-en';
+import { RayFormItem } from 'ray-web-common/lib/component/Form';
 
 export const configCaptcha = {
     inputProps: {

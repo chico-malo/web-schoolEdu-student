@@ -4,10 +4,10 @@
  * date: 2020-05-30
  */
 import React, { useEffect } from 'react';
-import { RayFormSelectProps } from '~/component/Form/RayFormSelect';
 import { observer } from 'mobx-react';
 import { CourseService } from '~/services/Course';
 import { Checkbox } from 'antd';
+import { RayFormSelectProps } from 'ray-web-common/lib/component/Form/RayFormSelect';
 
 //
 const CourseHook: React.FC = (props: RayFormSelectProps) => {

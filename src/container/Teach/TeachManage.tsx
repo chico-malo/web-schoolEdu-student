@@ -9,17 +9,17 @@ import objectPath from 'object-path';
 import { PageHeader } from 'antd';
 import moment from 'moment';
 
-import SearchTable from '~/component/SearchGroup/SearchTable';
 import { lang } from '~/locales/zh-en';
 import { BaseContainer } from '~/superClass/BaseContainer';
-import { SearchForm } from '~/component/SearchForm';
 import { EduDrawer } from '~/component/EduDrawer';
-import UpdateForm from '~/component/UpdateForm/UpdateForm';
 import { teachUpdateForm } from '~/container/Teach/config/teach.manage.form';
 import { TeachManageColumn } from '~/container/Teach/config/teach.manage.column';
 import { teachManageSearch } from '~/container/Teach/config/teach.manage.search';
 import { TeachService } from '~/services/Teach';
 import BaseClass from '~/superClass/BaseClass';
+import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
+import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
+import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 @BaseContainer({})
 @observer

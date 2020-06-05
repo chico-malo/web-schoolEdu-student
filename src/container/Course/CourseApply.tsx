@@ -7,11 +7,10 @@
  */
 import "~/styles/courseApply.less";
 import React from "react";
-import { List, Avatar, Tabs } from "antd";
-import { UsergroupAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
-import { StickyContainer, Sticky } from "react-sticky";
+import { Avatar, List, Tabs } from "antd";
+import { PlusSquareOutlined, UsergroupAddOutlined } from "@ant-design/icons";
+import { Sticky, StickyContainer } from "react-sticky";
 import { BaseContainer } from "~/superClass/BaseContainer";
-import { CourseService } from '~/services/Course';
 import { observer } from 'mobx-react';
 import BaseClass from '~/superClass/BaseClass';
 

@@ -3,8 +3,8 @@
  * author: yyao(873241789@qq.com)
  * date: 2020-06-04
  */
-import { RayFormItem } from '~/component/Form';
 import { lang } from '~/locales/zh-en';
+import { RayFormItem } from 'ray-web-common/lib/component/Form';
 
 export const configPasswordConfirm = {
     renderType: 'password',
