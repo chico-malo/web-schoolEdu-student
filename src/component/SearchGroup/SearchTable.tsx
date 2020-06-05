@@ -58,7 +58,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
         const {actionProps, cardProps, onAdd, ...other} = this.props;
         const total = other.dataSource && other.dataSource.length;
         return (
-            <div>
+            <Card>
                 <div {...actionProps}>
                     <Space>
                         <Button type="primary" onClick={onAdd}>新增</Button>
@@ -73,7 +73,7 @@ export default class SearchTable extends React.Component<SearchTableProps, any> 
                     {...other}
                     columns={this.generateColumns()}
                 />
-            </div>
+            </Card>
         )
     }
 }
