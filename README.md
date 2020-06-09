@@ -1,11 +1,11 @@
 # web-student-roll
 
-#### 介绍
+#### 项目介绍
 学籍管理系统
 
 
 
-#### 项目架构
+#### 目录架构
 react + mobx + typeScript + parcel + axios
 
 ------
