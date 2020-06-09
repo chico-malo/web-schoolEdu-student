@@ -13,7 +13,7 @@
     "oss": "node ali-oss-deploy.js",
     "clear": "rm -rf dist/* && yarn flxTable",
     "build": "yarn clear && parcel  build src/index.html -d dist --public-url ./ entry.js",
-    "prod": "yarn clear && NODE_ENV=production parcel  build src/index.html -d dist --public-url ./https://gityy-school.oss-accelerate.aliyuncs.com/web entry.js && yarn oss"
+    "prod": "yarn clear && NODE_ENV=production parcel  build src/index.html -d dist --public-url ./https://gityy-school.oss-accelerate.aliyuncs.com/school entry.js && yarn oss"
   },
   "dependencies": {
     "antd": "^4.3.3",
