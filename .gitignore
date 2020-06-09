@@ -7,6 +7,9 @@
 .history
 .cache
 .idea
-/dist
+/dist/*.css
+/dist/*.css.map
+/dist/*.js
+/dist/*.js.map
 
 *.log
