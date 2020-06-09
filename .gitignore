@@ -13,3 +13,4 @@
 /dist/*.js.map
 
 *.log
+.yarn-error.log
