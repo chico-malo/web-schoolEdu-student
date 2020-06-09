@@ -3,35 +3,53 @@
 #### 介绍
 学籍管理系统
 
-#### 软件架构
-软件架构说明
 
 
-#### 安装教程
+#### 项目架构
+react + mobx + typeScript + parcel + axios
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+------
 
 
-#### 码云特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+#### 文件结构
+```
+component   -- 组件
+constants  	-- 常量定义、小tip
+container 	-- 页面模块
+core 		-- 项目核心
+locales 	-- 中文映射
+services 	-- 状态管理
+styles  	-- 样式
+superClass  -- 父类
+utils 		--工具箱
+index.html 	-- 入口文件
+index.tsx   -- 入口文件
+ali-oss-deploy.js  -- 自动上传oss脚本
+fix-rc-table-source-code  -- 修复parcel打包antd错误脚本
+default.conf 	-- nginx配置文件
+Dockerfil  		-- 构建镜像文件
+```
+
+------
+
+
+
+#### 命令说明
+
+```
+yarn run start   	dev开发
+yarn run flxTable  	修复table组件打包错误
+yarn  run oss   	上传oss脚本
+yarn run clear   	公用优化命令
+yarn run build   	测试本地打包命令
+yarn  run prod   	生产包
+
+// 开发
+yarn  run start
+
+// 打包
+yarn  run prod
+```
+
