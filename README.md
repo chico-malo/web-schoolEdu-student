@@ -41,15 +41,34 @@ Dockerfil  		-- 构建镜像文件
 ```
 yarn run start   	dev开发
 yarn run flxTable  	修复table组件打包错误
-yarn  run oss   	上传oss脚本
+yarn run oss   		上传oss脚本
 yarn run clear   	公用优化命令
 yarn run build   	测试本地打包命令
-yarn  run prod   	生产包
+yarn run prod   	生产包
 
 // 开发
-yarn  run start
+yarn run start
 
 // 打包
-yarn  run prod
+yarn run prod	打包
+
+// git push后即可完成自动部署打包上线
+```
+
+------
+
+
+
+#### 自动部署说明
+
+```
+// commit中包含以下字符串表示跳过自动部署
+[ci skip]
+[CI SKIP]
+[Ci Skip]
+[ ci sKip ]
+[CI SKIp ]
+[Skip Ci]
+[skip ci ]
 ```
 
