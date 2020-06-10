@@ -28,6 +28,9 @@
     if (process.env.NODE_ENV === 'production') {
         bastApi = 'http://gityy.top/api';
     }
+    if (process.env.NODE_ENV === 'dev_prod') {
+        bastApi = 'http://127.0.0.1:8007/http://gityy.top:3000';
+    }
     window.bastApi = bastApi
 </script>
 
