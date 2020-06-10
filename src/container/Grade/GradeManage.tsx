@@ -14,8 +14,9 @@ import BaseClass from '~/superClass/BaseClass';
 import { GradeService } from '~/services/Grade';
 import { GradeUpdateForm } from '~/container/Grade/config/grade.manage.form';
 import { GradeManageColumn } from '~/container/Grade/config/grade.manage.column';
-import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
 import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
+import SearchTable from '~/component/SearchGroup/SearchTable';
+
 
 @BaseContainer({})
 @observer

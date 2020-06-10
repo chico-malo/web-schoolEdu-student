@@ -18,7 +18,7 @@ import { studentUpdateForm } from '~/container/student/config/student.manage.for
 import moment from 'moment';
 import { UserService } from '~/services/User';
 import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
-import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
+import SearchTable from '~/component/SearchGroup/SearchTable';
 import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
 
 @BaseContainer({})

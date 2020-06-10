@@ -18,8 +18,8 @@ import { teachManageSearch } from '~/container/Teach/config/teach.manage.search'
 import { TeachService } from '~/services/Teach';
 import BaseClass from '~/superClass/BaseClass';
 import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
-import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
 import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
+import SearchTable from '~/component/SearchGroup/SearchTable';
 
 @BaseContainer({})
 @observer

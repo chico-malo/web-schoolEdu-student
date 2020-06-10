@@ -18,8 +18,8 @@ import { courseUpdateForm } from '~/container/Course/config/course.updte.form';
 import { courseManageColumn } from '~/container/Course/config/courseManageColumn';
 import { EduDrawer } from '~/component/EduDrawer';
 import { SearchForm } from 'ray-web-common/lib/component/SearchForm';
-import SearchTable from 'ray-web-common/lib/component/SearchGroup/SearchTable';
 import UpdateForm from 'ray-web-common/lib/component/UpdateForm/UpdateForm';
+import SearchTable from '~/component/SearchGroup/SearchTable';
 
 @BaseContainer({})
 @observer
