@@ -1,6 +1,6 @@
 import { lang } from '~/locales/zh-en';
 import { FromConfigProps } from '~/constants/formConfig/interfaces/FromConfigProps';
-import { RayFormItem } from 'ray-web-common/lib/component/Form';
+import { RayFormItem } from '~/component/Form';
 
 /**
  * Copyright: Copyright (C) 2018 sitb.software,All Rights Reserved

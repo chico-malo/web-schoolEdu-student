@@ -7,7 +7,7 @@ import React from "react";
 import { lang } from '~/locales/zh-en';
 import { Row, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { RayFormItem } from 'ray-web-common/lib/component/Form';
+import { RayFormItem } from '~/component/Form';
 
 export const configUsername = {
     inputProps: {

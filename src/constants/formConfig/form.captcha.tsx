@@ -6,7 +6,7 @@
 import * as React from "react";
 import { Row } from 'antd';
 import { lang } from '~/locales/zh-en';
-import { RayFormItem } from 'ray-web-common/lib/component/Form';
+import { RayFormItem } from '~/component/Form';
 
 export const configCaptcha = {
     inputProps: {

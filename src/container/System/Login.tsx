@@ -7,7 +7,7 @@ import { SystemContainer } from "~/superClass/SystemContainer";
 import { LinkTip, TypeProps } from "./LinkTip";
 import { lang } from '~/locales/zh-en';
 import { SystemService } from '~/services/System';
-import { RayFormItem } from 'ray-web-common/lib/component/Form';
+import { RayFormItem } from '~/component/Form';
 
 @SystemContainer()
 @observer

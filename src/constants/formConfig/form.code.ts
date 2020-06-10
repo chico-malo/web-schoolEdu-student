@@ -3,7 +3,7 @@
  * author: yyao(873241789@qq.com)
  * date: 2020-06-04
  */
-import { RayFormItem } from 'ray-web-common/lib/component/Form';
+import { RayFormItem } from '~/component/Form';
 
 export const configCode = {
     inputProps: {

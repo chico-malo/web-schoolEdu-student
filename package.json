@@ -22,7 +22,7 @@
     "mobx-react": "^6.2.2",
     "mobx-react-lite": "^2.0.7",
     "object-path": "^0.11.4",
-    "ray-web-common": "^0.0.10",
+    "ray-web-common": "^0.0.14",
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1",
     "react-keeper": "^2.2.2",

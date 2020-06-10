@@ -5392,10 +5392,10 @@ raw-body@^2.2.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-ray-web-common@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.npm.taobao.org/ray-web-common/download/ray-web-common-0.0.10.tgz?cache=0&sync_timestamp=1591683168108&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fray-web-common%2Fdownload%2Fray-web-common-0.0.10.tgz#10a50ce41542bb43ede3734643c7be3f09b663db"
-  integrity sha1-EKUM5BVCu0Pt43NGQ8e+Pwm2Y9s=
+ray-web-common@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.npm.taobao.org/ray-web-common/download/ray-web-common-0.0.14.tgz?cache=0&sync_timestamp=1591782245291&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fray-web-common%2Fdownload%2Fray-web-common-0.0.14.tgz#fa3ea51e59fba44e622849cea338278ec0a11dc8"
+  integrity sha1-+j6lHln7pE5iKEnOozgnjsChHcg=
   dependencies:
     antd "^4.2.5"
     axios "^0.19.2"
