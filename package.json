@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "parcel src/index.html --open",
-    "startProd": "NODE_ENV=production parcel src/index.html --open",
+    "startProd": "NODE_ENV=dev_prod parcel src/index.html --open",
     "watch": "parcel watch src/index.html",
     "flxTable": "node fix-rc-table-source-code.js",
     "oss": "node ali-oss-deploy.js",
